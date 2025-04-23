@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>AetherXSS</RootNamespace>
+    <Version>2.0.0</Version>
+    <Authors>ibrahimsql</Authors>
+    <Description>Advanced Cross-Site Scripting Scanner with Animation Support</Description>
+    <NoWarn>CA1416;CS0219;CS1998</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project> 

